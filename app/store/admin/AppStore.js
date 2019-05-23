@@ -2,6 +2,7 @@ Ext.define('Admin.store.admin.AppStore', {
     extend: 'Ext.data.Store',
 
     alias: 'store.apps',
+    storeId: 'appsStore',
 
     model: 'Admin.model.admin.AppModel',
 	pageSize: 15,
@@ -23,8 +24,8 @@ Ext.define('Admin.store.admin.AppStore', {
 		startParam: '',
 		reader: {
 			type: 'json',
-			rootProperty: 'content',
-			totalProperty: 'totalElements'
+			rootProperty: 'data',
+			totalProperty: 'total'
 		}
 	},
 	listeners: {

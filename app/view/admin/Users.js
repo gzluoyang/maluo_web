@@ -31,7 +31,7 @@ Ext.define('Admin.view.admin.Users',{
                 {
 					text: '账户',
 					dataIndex: 'username',
-					flex: 1,
+					flex: 1
 				},
                 {
 					text: '简介',

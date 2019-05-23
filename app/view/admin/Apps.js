@@ -30,14 +30,46 @@ Ext.define('Admin.view.admin.Apps',{
             columns: [
 				{xtype: 'rownumberer'},
                 {
-					text: '名称',
-					dataIndex: 'name',
-					flex: 1,
+					text: '标题',
+					dataIndex: 'title',
+					width: 200
 				},
                 {
-					text: '简介',
-					dataIndex: 'intro',
-					flex: 5,
+					text: '图标样式',
+					dataIndex: 'icon_cls',
+					sortable: false,
+	    			width: 150
+				},
+                {
+					text: '图标',
+					dataIndex: 'icon',
+					sortable: false,
+				    width: 300
+				},
+                {
+					text: '排序',
+					dataIndex: 'tab_index',
+                    width: 80
+				},
+                {
+                    xtype: 'booleancolumn',
+					text: '可用',
+                    trueText: '是',
+                    falseText: '否',
+					dataIndex: 'status',
+                    width: 80
+				},
+                {
+                    xtype: 'datecolumn',
+                    text: '最后修改时间',
+                    format: 'Y-m-d H:i:s',
+                    width: 150,
+                    dataIndex: 'update_time'
+                },
+                {
+					text: '备注',
+					dataIndex: 'memo',
+					flex: 1,
 					sortable: false
 				}
             ],
@@ -65,27 +97,6 @@ Ext.define('Admin.view.admin.Apps',{
 					style: 'border-radius: 2px;',
 					iconCls: 'fa fa-lg fa-times-circle',
 					handler: 'onRemove',
-					bind: {
-						disabled: '{!hasCurrentRecord}'
-					}
-				},
-				'-',
-				{
-					text: '预览',
-					ui: 'blue',
-					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-eye',
-					handler: 'onPreview',
-					bind: {
-						disabled: '{!hasCurrentRecord}'
-					}
-				},
-				{
-					text: '扫码',
-					ui: 'soft-red',
-					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-qrcode',
-					handler: 'onQRCode',
 					bind: {
 						disabled: '{!hasCurrentRecord}'
 					}

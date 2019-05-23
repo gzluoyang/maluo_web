@@ -12,8 +12,8 @@ Ext.define('Admin.view.email.Email', {
     itemId: 'emailMainContainer',
 
     layout: {
-        type: 'hbox',
-//        align: 'stretch'
+        type: 'hbox'
+        //align: 'stretch'
     },
     scrollable: 'y',
 
