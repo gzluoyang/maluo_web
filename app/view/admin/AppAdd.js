@@ -59,28 +59,36 @@ Ext.define('Admin.view.admin.AppAdd',{
                     name: 'title',
                     allowBlank: false,
                     labelAlign: 'right',
-                    blankText: '不能为空!',
-                    bind: {
-                        value: '{info.title}'
-                    }
+                    blankText: '不能为空!'
                 },
                 {
                     xtype: 'textfield',
                     fieldLabel: '图标',
                     name: 'icon',
-                    labelAlign: 'right',
-                    bind: {
-                        value: '{info.icon}'
-                    }
+                    labelAlign: 'right'
                 },
                 {
                     xtype: 'textfield',
                     fieldLabel: '图标样式',
-                    labelAlign: 'right',
                     name: 'icon_cls',
-                    bind: {
-                        value: '{info.iconCls}'
-                    }
+                    labelAlign: 'right'
+                },
+                {
+                    xtype: 'numberfield',
+                    fieldLabel: '排序',
+                    name: 'tab_index',
+                    labelAlign: 'right',
+                    value: 0,
+                    minValue: 0,
+                    allowBlank: false
+                },
+                {
+                    xtype: 'checkboxfield',
+                    fieldLabel: '可用',
+                    name: 'status',
+                    labelAlign: 'right',
+                    inputValue: '1',
+                    uncheckedValue: '0'
                 },
                 {
                     xtype: 'textareafield',
@@ -88,10 +96,7 @@ Ext.define('Admin.view.admin.AppAdd',{
                     tooltip: '一些说明',
                     labelAlign: 'right',
                     name: 'memo',
-                    maxRows: 4,
-                    bind: {
-                        value: '{info.memo}'
-                    }
+                    maxRows: 4
                 }
             ]
         }

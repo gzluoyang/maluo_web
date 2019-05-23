@@ -25,6 +25,7 @@ Ext.define('Admin.view.main.Main', {
         {
             xtype: 'toolbar',
             cls: 'sencha-dash-dash-headerbar shadow',
+            style: 'border-top: none;',
             height: 64,
             itemId: 'headerBar',
             items: [
@@ -137,6 +138,21 @@ Ext.define('Admin.view.main.Main', {
                     }
                 }
             ]
-        }
+        },
+        Ext.create('Ext.ux.StatusBar',{
+            id: 'statusBar',
+            border: true,
+            defaultText: '默认状态',
+            defaultIconCls: 'fa fa-home',
+            text: '状态',
+            iconCls: 'fa fa-home',
+            items: [
+                {
+                    text: 'hello'
+                },
+                '->',
+                '其它'
+            ]
+        })
     ]
 });

@@ -25,7 +25,7 @@ Ext.define('Admin.view.admin.Apps',{
 			reference: 'gridPanel',
             itemId: 'contentPanel',
             flex: 1,
-			margin: 0,
+			margin: '8 0 0 0',
 			bind: '{apps}',
             columns: [
 				{xtype: 'rownumberer'},
@@ -117,7 +117,7 @@ Ext.define('Admin.view.admin.Apps',{
 					handler: 'onSearch'
 				}
 			],
-			bbar: [
+			bbar: 
 				{
 					xtype: 'pagingtoolbar',
 					bind: '{apps}',
@@ -131,7 +131,7 @@ Ext.define('Admin.view.admin.Apps',{
 					emptyMsg: '没有记录显示!',
 					displayInfo: true
 				}
-			],
+			,
 			listeners: {
 				selectionchange: 'onSelectionChange',
 				rowdblclick: 'onRowDbClick'

@@ -94,7 +94,7 @@ Ext.define('Admin.view.admin.AppUpdate',{
 								}
 							},
 							{
-                                xtype: 'textfield',
+                                xtype: 'numberfield',
 								fieldLabel: '排序',
 								name: 'tab_index',
 								minValue: 0,
