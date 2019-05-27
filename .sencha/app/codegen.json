@@ -322,6 +322,18 @@
         "modelNamespace": "Admin.model",
         "name": "admin.UserModel"
       }
+    },
+    "app/model/admin/GroupModel.js": {
+      "source": "{modelFileName}.js.tpl.merge",
+      "version": "31d5356142a167c72422f7902f19df3c583f3249",
+      "parameters": {
+        "appName": "Admin",
+        "baseClass": "Ext.data.Model",
+        "fields": "id:int:null",
+        "modelFileName": "admin/GroupModel",
+        "modelNamespace": "Admin.model",
+        "name": "admin.GroupModel"
+      }
     }
   }
 }

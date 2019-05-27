@@ -5,9 +5,5 @@ Ext.define('Admin.view.admin.AppsModel', {
         apps: {
             type: 'apps'
         }
-    },
-    data: {
-        name: 'Admin'
     }
-
 });
