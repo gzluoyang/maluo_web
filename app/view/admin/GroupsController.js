@@ -1,24 +1,51 @@
 Ext.define('Admin.view.admin.GroupsController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.groups',
-     
+
+	onTreeStoreLoad: function(me,records,successful,operation,eOpts) {
+		var n = records.length;
+		for(var i=0;i<n;i++) {
+            var row = i+1;
+            if(row%2 == 0) {
+                records[i].set('cls','x-grid-item-alt');
+            }
+		}
+	},
+
+    onSelectApp: function(me,record,index,e,eOpts) {
+        var app_id = record.get('id');
+        this.getViewModel().set('app_id',app_id);
+        this.search();
+    },
+
+    onTreeRefresh: function() {
+        var treeStore = this.getStore('apptree');
+        treeStore.reload();
+    },
+
     onSearch: function() {
-        var store = Ext.data.StoreManager.lookup('groupStore');
 		var searchKeyField = this.lookup('searchKey');
 		var searchKey = searchKeyField.getValue();
+        this.search(searchKey);
+    },
 
-		var gridPanel = this.lookup('gridPanel');
-		var store = gridPanel.getStore();
-		var proxy = store.getProxy();
+    search: function(searchKey) {
+        var app_id = this.getViewModel().get('app_id');
+        if(app_id == 0) {
+            Ext.MessageBox.alert('提醒','请先选择相应的应用');
+        }
+       
+        var params = {
+            app_id: app_id
+        };
 
-		if(searchKey != '') {
-			proxy.setExtraParams({
-				title: '%'+searchKey+'%'
-			});
-		} else {
-			proxy.setExtraParams({
-			});
+		if(searchKey && searchKey != '') {
+            params.title = '%'+searchKey+'%';
 		}
+
+        var store = this.getViewModel().getStore('groups');
+		var proxy = store.getProxy();
+        proxy.setExtraParams(params);
 
 		store.loadPage(1);
 	},
@@ -135,12 +162,18 @@ Ext.define('Admin.view.admin.GroupsController', {
 	},
 
     onAdd: function() {
+        var app_id = this.getViewModel().get('app_id');
+
         var addWin = Ext.create({
             xtype: 'groupAdd'
         });
 
         var viewModel = addWin.getViewModel();
-        viewModel.setData({});
+        viewModel.setData({
+            info: {
+                'app_id': app_id
+            }
+        });
 
         addWin.show();
     }

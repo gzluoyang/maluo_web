@@ -54,6 +54,13 @@ Ext.define('Admin.view.admin.GroupAdd',{
 			reference: 'formPanel',
 			items: [
                 {
+                    xtype: 'hiddenfield',
+                    name: 'app_id',
+                    bind: {
+                        value: '{info.app_id}'
+                    }
+                },
+                {
                     xtype: 'textfield',
                     fieldLabel: '标题',
                     name: 'title',

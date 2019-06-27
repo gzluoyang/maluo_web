@@ -27,7 +27,6 @@ Ext.define('Admin.store.admin.GroupStore', {
 			rootProperty: 'data',
 			totalProperty: 'total'
 		}
-	},
-	autoLoad: true
+	}
 });
 

@@ -87,7 +87,7 @@ Ext.define('Admin.view.admin.AppUpdate',{
 							{
 								xtype: 'textfield',
 								fieldLabel: '图标样式',
-								name: 'origin',
+								name: 'icon_cls',
 								bind: {
 									value: '{info.icon_cls}',
 									readOnly: '{!isEditable}'

@@ -30,7 +30,9 @@ Ext.define('Admin.view.admin.Groups',{
             bodyStyle: 'border-top-width: 1px !important;border-bottom-width: 0px !important;',
             rootVisible: false,
             width: 200,
-            lines: true,
+            listeners: {
+                itemclick: 'onSelectApp'
+            },
             tbar: {
                 style: 'border-top-width: 0px !important;',
                 items: [
@@ -43,7 +45,8 @@ Ext.define('Admin.view.admin.Groups',{
                         xtype: 'button',
                         iconCls: 'fa fa-refresh',
                         style: 'border-color: #fff;border-radius: 50%;',
-                        tooltip: '刷新'
+                        tooltip: '刷新',
+                        handler: 'onTreeRefresh'
                     }
                 ]
             }
