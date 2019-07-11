@@ -36,7 +36,7 @@ Ext.define('Admin.view.admin.Menus',{
             },
             header: {
                 style: 'font-size: 13px;'
-           },
+            },
             title: {
                 text: '树视图',
                 style: 'font-size: 13px;',

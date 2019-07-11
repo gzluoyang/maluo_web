@@ -33,23 +33,18 @@ Ext.define('Admin.view.admin.Groups',{
             listeners: {
                 itemclick: 'onSelectApp'
             },
-            tbar: {
-                style: 'border-top-width: 0px !important;',
-                items: [
-                    {
-                        xtype: 'label',
-                        text: '应用列表'
-                    },
-                    '->',
-                    {
-                        xtype: 'button',
-                        iconCls: 'fa fa-refresh',
-                        style: 'border-color: #fff;border-radius: 50%;',
-                        tooltip: '刷新',
-                        handler: 'onTreeRefresh'
-                    }
-                ]
-            }
+            title: {
+                text: '树视图',
+                style: 'font-size: 13px;',
+                iconCls: 'fa fa-list'
+            },
+            tools: [
+                {
+                    iconCls: 'fa fa-refresh',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onTreeRefresh'
+                }
+            ]
         },
         {
             xtype: 'grid',

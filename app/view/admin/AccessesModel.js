@@ -1,8 +1,16 @@
 Ext.define('Admin.view.admin.AccessesModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.admin-accesses',
+    alias: 'viewmodel.accesses',
     data: {
-        name: 'Admin'
+        module_id: 0,
+        app_id: 0
+    },
+    stores: {
+        moduletree: {
+            type: 'moduletree'
+        },
+        accesses: {
+            type: 'accesses'
+        }
     }
-
 });

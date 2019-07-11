@@ -6,7 +6,7 @@ Ext.define('Admin.view.admin.MenuAddModel', {
         iconCls: 'fa fa-plus-circle',
         actionUrl: '/api/admin/Menu/create',
         info:{
-            menu_id: 0
+            group_id: 0
         }
     }
 
