@@ -32,7 +32,7 @@ Ext.define('Admin.view.admin.GroupsController', {
     search: function(searchKey) {
         var app_id = this.getViewModel().get('app_id');
         if(app_id == 0) {
-            Ext.MessageBox.alert('提醒','请先选择相应的应用');
+            Ext.MessageBox.alert('提醒','请先选择相应的分组');
         }
        
         var params = {

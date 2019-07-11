@@ -2,7 +2,15 @@ Ext.define('Admin.view.admin.MenusModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.menus',
     data: {
-        name: 'Admin'
+        group_id: 0,
+        app_id: 0
+    },
+    stores: {
+        grouptree: {
+            type: 'grouptree'
+        },
+        menus: {
+            type: 'menus'
+        }
     }
-
 });

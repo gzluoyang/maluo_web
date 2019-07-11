@@ -72,6 +72,12 @@ Ext.define('Admin.store.NavigationTree', {
                         leaf: true
                     },
                     {
+                        text: '按钮管理',
+                        iconCls: 'x-fa fa-times-circle',
+                        viewType: 'buttons',
+                        leaf: true
+                    },
+                    {
                         text: '模块管理',
                         iconCls: 'x-fa fa-lock',
                         viewType: 'modules',

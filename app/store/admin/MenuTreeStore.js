@@ -1,14 +1,14 @@
-Ext.define('Admin.store.admin.AppTreeStore', {
+Ext.define('Admin.store.admin.MenuTreeStore', {
     extend: 'Ext.data.TreeStore',
 
-    alias: 'store.apptree',
-    storeId: 'appTreeStore',
+    alias: 'store.menutree',
+    storeId: 'menuTreeStore',
 
     nodeParam: 'parent_id',
     fields: ['id','title'],
 	proxy: {
 		type: 'ajax',
-		url: '/api/admin/tree/app',
+		url: '/api/admin/tree/menu',
 		actionMethods: {
 			create: 'POST',
 			read: 'POST',
@@ -25,9 +25,6 @@ Ext.define('Admin.store.admin.AppTreeStore', {
         text: '应用列表',
         iconCls: 'x-fa fa-globe',
         expanded: true
-    },
-	listeners: {
-		load: 'onTreeStoreLoad'
-	}
+    }
 });
 
