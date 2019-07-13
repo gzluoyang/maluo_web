@@ -1,14 +1,14 @@
-Ext.define('Admin.store.admin.AppTreeStore', {
+Ext.define('Admin.store.admin.RoleTreeStore', {
     extend: 'Ext.data.TreeStore',
 
-    alias: 'store.apptree',
-    storeId: 'appTreeStore',
+    alias: 'store.roletree',
+    storeId: 'roleTreeStore',
 
     nodeParam: 'parent_id',
     fields: ['id','text'],
 	proxy: {
 		type: 'ajax',
-		url: '/api/admin/tree/app',
+		url: '/api/admin/tree/role',
 		actionMethods: {
 			create: 'POST',
 			read: 'POST',
@@ -22,12 +22,9 @@ Ext.define('Admin.store.admin.AppTreeStore', {
 	},
     root: {
         id: 0,
-        text: '应用列表',
-        iconCls: 'x-fa fa-globe',
+        text: '角色树',
+        iconCls: 'x-fa fa-users',
         expanded: true
-    },
-	listeners: {
-		load: 'onTreeStoreLoad'
-	}
+    }
 });
 

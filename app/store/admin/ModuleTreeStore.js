@@ -5,7 +5,7 @@ Ext.define('Admin.store.admin.ModuleTreeStore', {
     storeId: 'moduleTreeStore',
 
     nodeParam: 'parent_id',
-    fields: ['id','title'],
+    fields: ['id','text'],
 	proxy: {
 		type: 'ajax',
 		url: '/api/admin/tree/module',

@@ -5,7 +5,6 @@ Ext.define('Admin.view.admin.MenusController', {
     onSelectApp: function(me,record,index,e,eOpts) {
         var id = record.get('id');
         var leaf = record.get('leaf');
-        var data = {};
         var data = {
             app_id: 0,
             group_id: 0,
