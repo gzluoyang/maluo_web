@@ -1,15 +1,15 @@
-Ext.define('Admin.store.admin.UserStore', {
+Ext.define('Admin.store.admin.OrgStore', {
     extend: 'Ext.data.Store',
 
-    alias: 'store.users',
-    storeId: 'usersStore',
+    alias: 'store.orgs',
+    storeId: 'orgsStore',
 
-    model: 'Admin.model.admin.UserModel',
+    model: 'Admin.model.admin.OrgModel',
 	pageSize: 15,
 	remoteSort: true,
 	proxy: {
 		type: 'ajax',
-		url: '/api/admin/user/index',
+		url: '/api/admin/org/index',
 		actionMethods: {
 			create: 'POST',
 			read: 'POST',
@@ -27,7 +27,6 @@ Ext.define('Admin.store.admin.UserStore', {
 			rootProperty: 'data',
 			totalProperty: 'total'
 		}
-	},
-	autoLoad: true
+	}
 });
 

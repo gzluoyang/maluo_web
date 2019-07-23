@@ -22,7 +22,7 @@ Ext.define('Admin.store.admin.ModuleTreeStore', {
 	},
     root: {
         id: 0,
-        text: '应用列表',
+        text: '模块树',
         iconCls: 'x-fa fa-globe',
         expanded: true
     }

@@ -61,7 +61,7 @@ Ext.define('Admin.store.NavigationTree', {
 
                     {
                         text: '分组管理',
-                        iconCls: 'x-fa fa-exclamation-triangle',
+                        iconCls: 'x-fa fa-users',
                         viewType: 'groups',
                         leaf: true
                     },
@@ -73,36 +73,40 @@ Ext.define('Admin.store.NavigationTree', {
                     },
                     {
                         text: '按钮管理',
-                        iconCls: 'x-fa fa-times-circle',
+                        iconCls: 'x-fa fa-hand-pointer-o',
                         viewType: 'buttons',
                         leaf: true
                     },
                     {
                         text: '模块管理',
-                        iconCls: 'x-fa fa-lock',
+                        iconCls: 'x-fa fa-cubes',
                         viewType: 'modules',
                         leaf: true
                     },
                     {
                         text: '访问管理',
-                        iconCls: 'x-fa fa-lock',
+                        iconCls: 'x-fa fa-mouse-pointer',
                         viewType: 'accesses',
                         leaf: true
                     },
                     {
                         text: '角色管理',
-                        iconCls: 'x-fa fa-lock',
+                        iconCls: 'x-fa fa-user-secret',
                         viewType: 'roles',
                         leaf: true
                     },
                     {
                         text: '用户管理',
-                        iconCls: 'x-fa fa-lock',
+                        iconCls: 'x-fa fa-user',
                         viewType: 'users',
                         leaf: true
                     },
-
-
+                    {
+                        text: '机构管理',
+                        iconCls: 'x-fa fa-home',
+                        viewType: 'orgs',
+                        leaf: true
+                    },
                     {
                         text: 'Login',
                         iconCls: 'x-fa fa-check',

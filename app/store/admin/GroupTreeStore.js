@@ -22,7 +22,7 @@ Ext.define('Admin.store.admin.GroupTreeStore', {
 	},
     root: {
         id: 0,
-        text: '应用列表',
+        text: '分组树',
         iconCls: 'x-fa fa-globe',
         expanded: true
     }

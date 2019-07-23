@@ -23,7 +23,7 @@ Ext.define('Admin.store.admin.RoleTreeStore', {
     root: {
         id: 0,
         text: '角色树',
-        iconCls: 'x-fa fa-users',
+        iconCls: 'x-fa fa-user',
         expanded: true
     }
 });
