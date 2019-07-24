@@ -9,6 +9,9 @@ Ext.define('Admin.view.admin.role.RolesModel', {
         accesstree: {
             type: 'accesstree'
         },
+        usertree: {
+            type: 'usertree'
+        },
         roletree: {
             type: 'roletree'
         },

@@ -134,12 +134,19 @@ Ext.define('Admin.view.admin.role.Roles',{
 				},
 				'-',
                 {
-                    text: '访问',
+                    text: '用户',
  					ui: 'soft-green',
 					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-users',
+					iconCls: 'fa fa-lg fa-user',
+					handler: 'onSetUser'
+                },
+                {
+                    text: '访问',
+ 					ui: 'soft-blue',
+					style: 'border-radius: 2px;',
+					iconCls: 'fa fa-lg fa-lock',
 					handler: 'onSetAccess'
-               },
+                },
                 '-',
 				'->',
 				{
@@ -202,7 +209,7 @@ Ext.define('Admin.view.admin.role.Roles',{
                     iconCls: 'fa fa-save',
                     tooltip: '保存',
                     style: 'font-size: 13px;padding-top: 3px;',
-                    callback: 'onExpand'
+                    callback: 'onSaveAccesses'
                 },
                 {
                     iconCls: 'fa fa-plus-square',
@@ -228,7 +235,62 @@ Ext.define('Admin.view.admin.role.Roles',{
                     style: 'font-size: 13px;padding-top: 3px;',
                     callback: 'onAccessTreeClose'
                 }
-
+            ]
+        },
+        {
+            xtype: 'treepanel',
+            reference: 'userTree',
+            itemId: 'usertree',
+            bind: '{usertree}',
+            hidden: true,
+            border: true,
+            style: 'border-color: #d0d0d0 !important;border-right-width: 1px !important;border-top-width: 0px !important;',
+            bodyBorder: false,
+            bodyStyle: 'border-top-width: 1px !important;border-bottom-width: 0px !important;',
+            rootVisible: true,
+            width: 300,
+            header: {
+                style: 'font-size: 13px;'
+            },
+            listeners: {
+                beforeitemexpand: 'onBeforeUserTreeItemExpand'
+            },
+            title: {
+                text: '用户设置',
+                style: 'font-size: 13px;',
+                iconCls: 'fa fa-cog'
+            },
+            tools: [
+                {
+                    iconCls: 'fa fa-save',
+                    tooltip: '保存',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onSaveUsers'
+                },
+                {
+                    iconCls: 'fa fa-plus-square',
+                    tooltip: '展开所有',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onUserTreeExpandAll'
+                },
+                {
+                    iconCls: 'fa fa-minus-square',
+                    tooltip: '折叠所有',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onUserTreeCollapseAll'
+                },
+                {
+                    iconCls: 'fa fa-refresh',
+                    tooltip: '重置',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onUserTreeRefresh'
+                },
+                {
+                    iconCls: 'fa fa-times',
+                    tooltip: '关闭',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onUserTreeClose'
+                }
             ]
         }
     ]

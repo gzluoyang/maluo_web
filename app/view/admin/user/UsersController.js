@@ -90,8 +90,8 @@ Ext.define('Admin.view.admin.user.UsersController', {
 		this.getViewModel().setData(config);
 
         var roleTree = this.lookup('roleTree');
-        //roleTree.hide();
-        this.onSetRole();
+        roleTree.hide();
+        //this.onSetRole();
 	},
 
 	onRowDbClick: function(me,record,element,rowIndex,e,eOpts) {
