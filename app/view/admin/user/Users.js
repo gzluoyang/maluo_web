@@ -144,7 +144,7 @@ Ext.define('Admin.view.admin.user.Users',{
 					style: 'border-radius: 2px;',
 					iconCls: 'fa fa-lg fa-user-secret',
 					handler: 'onSetRole'
-               },
+                },
                 '-',
 				'->',
 				{

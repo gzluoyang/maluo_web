@@ -6,6 +6,9 @@ Ext.define('Admin.view.admin.access.AccessesModel', {
         app_id: 0
     },
     stores: {
+        roletree: {
+            type: 'roletree'
+        },
         moduletree: {
             type: 'moduletree'
         },

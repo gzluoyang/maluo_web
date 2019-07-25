@@ -6,6 +6,9 @@ Ext.define('Admin.view.admin.menu.MenusModel', {
         app_id: 0
     },
     stores: {
+        roletree: {
+            type: 'roletree'
+        },
         grouptree: {
             type: 'grouptree'
         },

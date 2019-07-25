@@ -135,17 +135,32 @@ Ext.define('Admin.view.admin.role.Roles',{
 				'-',
                 {
                     text: '用户',
- 					ui: 'soft-green',
+ 					ui: 'green',
 					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-user',
+					iconCls: 'fa fa-lg fa-users',
 					handler: 'onSetUser'
                 },
                 {
                     text: '访问',
+ 					ui: 'blue',
+					style: 'border-radius: 2px;',
+					iconCls: 'fa fa-lg fa-cloud-upload',
+					handler: 'onSetAccess'
+                },
+                '-',
+                {
+                    text: '菜单',
  					ui: 'soft-blue',
 					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-lock',
-					handler: 'onSetAccess'
+					iconCls: 'fa fa-lg fa-list-ul',
+					handler: 'onSetMenu'
+                },
+                {
+                    text: '按钮',
+ 					ui: 'soft-purple',
+					style: 'border-radius: 2px;',
+					iconCls: 'fa fa-lg fa-hand-pointer-o',
+					handler: 'onSetButton'
                 },
                 '-',
 				'->',
@@ -181,6 +196,7 @@ Ext.define('Admin.view.admin.role.Roles',{
 				rowdblclick: 'onRowDbClick'
 			}
         },
+        /* accessTree */
         {
             xtype: 'treepanel',
             reference: 'accessTree',
@@ -237,6 +253,7 @@ Ext.define('Admin.view.admin.role.Roles',{
                 }
             ]
         },
+        /* userTree */
         {
             xtype: 'treepanel',
             reference: 'userTree',
@@ -292,6 +309,123 @@ Ext.define('Admin.view.admin.role.Roles',{
                     callback: 'onUserTreeClose'
                 }
             ]
+        },
+
+        /* menuTree */
+        {
+            xtype: 'treepanel',
+            reference: 'menuTree',
+            itemId: 'menutree',
+            bind: '{menutree}',
+            hidden: true,
+            border: true,
+            style: 'border-color: #d0d0d0 !important;border-right-width: 1px !important;border-top-width: 0px !important;',
+            bodyBorder: false,
+            bodyStyle: 'border-top-width: 1px !important;border-bottom-width: 0px !important;',
+            rootVisible: true,
+            width: 300,
+            header: {
+                style: 'font-size: 13px;'
+            },
+            listeners: {
+                beforeitemexpand: 'onBeforeMenuTreeItemExpand'
+            },
+            title: {
+                text: '菜单设置',
+                style: 'font-size: 13px;',
+                iconCls: 'fa fa-cog'
+            },
+            tools: [
+                {
+                    iconCls: 'fa fa-save',
+                    tooltip: '保存',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onSaveMenus'
+                },
+                {
+                    iconCls: 'fa fa-plus-square',
+                    tooltip: '展开所有',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onMenuTreeExpandAll'
+                },
+                {
+                    iconCls: 'fa fa-minus-square',
+                    tooltip: '折叠所有',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onMenuTreeCollapseAll'
+                },
+                {
+                    iconCls: 'fa fa-refresh',
+                    tooltip: '重置',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onMenuTreeRefresh'
+                },
+                {
+                    iconCls: 'fa fa-times',
+                    tooltip: '关闭',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onMenuTreeClose'
+                }
+            ]
+        },
+
+        /* button code */
+        {
+            xtype: 'treepanel',
+            reference: 'buttonTree',
+            itemId: 'buttontree',
+            bind: '{buttontree}',
+            hidden: true,
+            border: true,
+            style: 'border-color: #d0d0d0 !important;border-right-width: 1px !important;border-top-width: 0px !important;',
+            bodyBorder: false,
+            bodyStyle: 'border-top-width: 1px !important;border-bottom-width: 0px !important;',
+            rootVisible: true,
+            width: 300,
+            header: {
+                style: 'font-size: 13px;'
+            },
+            listeners: {
+                beforeitemexpand: 'onBeforeButtonTreeItemExpand'
+            },
+            title: {
+                text: '菜单设置',
+                style: 'font-size: 13px;',
+                iconCls: 'fa fa-cog'
+            },
+            tools: [
+                {
+                    iconCls: 'fa fa-save',
+                    tooltip: '保存',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onSaveButtons'
+                },
+                {
+                    iconCls: 'fa fa-plus-square',
+                    tooltip: '展开所有',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onButtonTreeExpandAll'
+                },
+                {
+                    iconCls: 'fa fa-minus-square',
+                    tooltip: '折叠所有',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onButtonTreeCollapseAll'
+                },
+                {
+                    iconCls: 'fa fa-refresh',
+                    tooltip: '重置',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onButtonTreeRefresh'
+                },
+                {
+                    iconCls: 'fa fa-times',
+                    tooltip: '关闭',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onButtonTreeClose'
+                }
+            ]
         }
+
     ]
 });

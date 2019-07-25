@@ -91,11 +91,7 @@ Ext.define('Admin.view.admin.role.RolesController', {
 		}
 		this.getViewModel().setData(config);
 
-        var userTree = this.lookup('userTree');
-        userTree.hide();
- 
-        var accessTree = this.lookup('accessTree');
-        accessTree.hide();
+        this.hideAllTreeView();
 	},
 
 	onRowDbClick: function(me,record,element,rowIndex,e,eOpts) {
@@ -123,7 +119,20 @@ Ext.define('Admin.view.admin.role.RolesController', {
 		});
 	},
 
+    hideAllTreeView: function() {
+        var viewModel = this.getViewModel();
+        var settings = viewModel.get('settings');
+        var n = settings.length;
+        for(var i = 0; i < n; i++) {
+            var treeview = settings[i];
+            this.lookup(treeview).hide();
+        }
+    },
+
+    /* user code */
     onSetUser: function() {
+        this.hideAllTreeView();
+
         var treePanel = this.lookup('userTree');
         treePanel.show();
 
@@ -227,7 +236,10 @@ Ext.define('Admin.view.admin.role.RolesController', {
         treePanel.collapseAll();
     },
 
+    /* access code */
     onSetAccess: function() {
+        this.hideAllTreeView();
+
         var treePanel = this.lookup('accessTree');
         treePanel.show();
 
@@ -324,6 +336,212 @@ Ext.define('Admin.view.admin.role.RolesController', {
 
     onAccessTreeCollapseAll: function() {
         var treePanel = this.lookup('accessTree');
+        treePanel.collapseAll();
+    },
+
+    /* menu code */
+    onSetMenu: function() {
+        this.hideAllTreeView();
+
+        var treePanel = this.lookup('menuTree');
+        treePanel.show();
+
+        var record = this.findCurrentRecord();
+        var role_id = record.get('id');
+
+        var store = this.getStore('menutree');
+        store.getProxy().setExtraParams({
+            status: false,
+            checked: true,
+            role_id: role_id
+        });
+        store.reload({
+            callback: function(record,operation,success) {
+                if(success === true) {
+                    treePanel.setWidth(300);
+                    treePanel.expandAll();
+                }
+            }
+        });
+    },
+
+    onSaveMenus: function() {
+        var treePanel = this.lookup('menuTree');
+        var menuNodes = treePanel.getChecked();
+        var menus = [];
+        var n = menuNodes.length;
+        for(var i = 0;i < n;i++) {
+            var data = menuNodes[i].data;
+            var menu_id = data.id;
+            menus.push(menu_id);
+        }
+
+        var record = this.findCurrentRecord();
+        var role_id = record.get('id');
+        var data = {
+            role_id: role_id,
+            menus: menus
+        };
+
+        var that = this;
+        Ext.Ajax.request({
+		    url: '/api/admin/role/menus',
+            jsonData: data,
+            success: function(response,opts) {
+ 				Ext.MessageBox.alert({
+					title: '成功',
+					iconCls: 'fa fa-check-circle',
+					message: '访问设置成功',
+					buttons: Ext.MessageBox.OK,
+					scope: that,
+					fn: function() {
+                        that.onSetMenu();
+					}
+				});
+           },
+           failure: function(response,opts) {
+           }
+        });
+    },
+
+    onBeforeMenuTreeItemExpand: function(me,options) {
+        var record = this.findCurrentRecord();
+        var role_id = record.get('id');
+
+        var store = this.getStore('menutree');
+        store.getProxy().setExtraParams({
+            status: false,
+            checked: true,
+            role_id: role_id
+        });
+    },
+
+    onMenuTreeRefresh: function() {
+        var treePanel = this.lookup('menuTree');
+
+        var treeStore = this.getStore('menutree');
+        treeStore.reload({
+            callback: function(record,operation,success) {
+                if(success === true)
+                    treePanel.expandAll();
+            }
+        });
+    },
+    onMenuTreeClose: function() {
+        var treePanel = this.lookup('menuTree');
+        treePanel.hide();
+    },
+
+    onMenuTreeExpandAll: function() {
+        var treePanel = this.lookup('menuTree');
+        treePanel.expandAll();
+    },
+
+    onMenuTreeCollapseAll: function() {
+        var treePanel = this.lookup('menuTree');
+        treePanel.collapseAll();
+    },
+
+    /* button code */
+    onSetButton: function() {
+        this.hideAllTreeView();
+
+        var treePanel = this.lookup('buttonTree');
+        treePanel.show();
+
+        var record = this.findCurrentRecord();
+        var role_id = record.get('id');
+
+        var store = this.getStore('buttontree');
+        store.getProxy().setExtraParams({
+            status: false,
+            checked: true,
+            role_id: role_id
+        });
+        store.reload({
+            callback: function(record,operation,success) {
+                if(success === true) {
+                    treePanel.setWidth(300);
+                    treePanel.expandAll();
+                }
+            }
+        });
+    },
+
+    onSaveButtons: function() {
+        var treePanel = this.lookup('buttonTree');
+        var buttonNodes = treePanel.getChecked();
+        var buttons = [];
+        var n = buttonNodes.length;
+        for(var i = 0;i < n;i++) {
+            var data = buttonNodes[i].data;
+            var button_id = data.id;
+            buttons.push(button_id);
+        }
+
+        var record = this.findCurrentRecord();
+        var role_id = record.get('id');
+        var data = {
+            role_id: role_id,
+            buttons: buttons
+        };
+
+        var that = this;
+        Ext.Ajax.request({
+		    url: '/api/admin/role/buttons',
+            jsonData: data,
+            success: function(response,opts) {
+ 				Ext.MessageBox.alert({
+					title: '成功',
+					iconCls: 'fa fa-check-circle',
+					message: '访问设置成功',
+					buttons: Ext.MessageBox.OK,
+					scope: that,
+					fn: function() {
+                        that.onSetButton();
+					}
+				});
+           },
+           failure: function(response,opts) {
+           }
+        });
+    },
+
+    onBeforeButtonTreeItemExpand: function(me,options) {
+        var record = this.findCurrentRecord();
+        var role_id = record.get('id');
+
+        var store = this.getStore('buttontree');
+        store.getProxy().setExtraParams({
+            status: false,
+            checked: true,
+            role_id: role_id
+        });
+    },
+
+    onButtonTreeRefresh: function() {
+        var treePanel = this.lookup('buttonTree');
+
+        var treeStore = this.getStore('buttontree');
+        treeStore.reload({
+            callback: function(record,operation,success) {
+                if(success === true)
+                    treePanel.expandAll();
+            }
+        });
+    },
+    onButtonTreeClose: function() {
+        var treePanel = this.lookup('buttonTree');
+        treePanel.hide();
+    },
+
+    onButtonTreeExpandAll: function() {
+        var treePanel = this.lookup('buttonTree');
+        treePanel.expandAll();
+    },
+
+    onButtonTreeCollapseAll: function() {
+        var treePanel = this.lookup('buttonTree');
         treePanel.collapseAll();
     },
 

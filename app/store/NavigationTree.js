@@ -10,6 +10,89 @@ Ext.define('Admin.store.NavigationTree', {
     root: {
         expanded: true,
         children: [
+           {
+                text: '系统管理',
+                iconCls: 'x-fa fa-cogs',
+                expanded: false,
+                selectable: false,
+                //routeId: 'pages-parent',
+                //id: 'pages-parent',
+
+                children: [
+                    {
+                        text: '应用管理',
+                        iconCls: 'x-fa fa-th-large',
+                        viewType: 'apps',
+                        leaf: true
+                    },
+                    {
+                        text: '分组管理',
+                        iconCls: 'x-fa fa-indent',
+                        viewType: 'groups',
+                        leaf: true
+                    },
+                    {
+                        text: '菜单管理',
+                        iconCls: 'x-fa fa-list-ul',
+                        viewType: 'menus',
+                        leaf: true
+                    },
+                    {
+                        text: '按钮管理',
+                        iconCls: 'x-fa fa-hand-pointer-o',
+                        viewType: 'buttons',
+                        leaf: true
+                    },
+                    {
+                        text: '模块管理',
+                        iconCls: 'x-fa fa-cubes',
+                        viewType: 'modules',
+                        leaf: true
+                    },
+                    {
+                        text: '访问管理',
+                        iconCls: 'x-fa fa-cloud-upload',
+                        viewType: 'accesses',
+                        leaf: true
+                    },
+                    {
+                        text: '角色管理',
+                        iconCls: 'x-fa fa-user',
+                        viewType: 'roles',
+                        leaf: true
+                    },
+                    {
+                        text: '用户管理',
+                        iconCls: 'x-fa fa-users',
+                        viewType: 'users',
+                        leaf: true
+                    },
+                    {
+                        text: '机构管理',
+                        iconCls: 'x-fa fa-home',
+                        viewType: 'orgs',
+                        leaf: true
+                    },
+                    {
+                        text: 'Login',
+                        iconCls: 'x-fa fa-check',
+                        viewType: 'login',
+                        leaf: true
+                    },
+                    {
+                        text: 'Register',
+                        iconCls: 'x-fa fa-pencil-square-o',
+                        viewType: 'register',
+                        leaf: true
+                    },
+                    {
+                        text: 'Password Reset',
+                        iconCls: 'x-fa fa-lightbulb-o',
+                        viewType: 'passwordreset',
+                        leaf: true
+                    }
+                ]
+            },
             {
                 text: 'Dashboard',
                 iconCls: 'x-fa fa-desktop',
@@ -42,90 +125,6 @@ Ext.define('Admin.store.NavigationTree', {
                 iconCls: 'x-fa fa-question',
                 viewType: 'faq',
                 leaf: true
-            },
-            {
-                text: '系统管理',
-                iconCls: 'x-fa fa-leanpub',
-                expanded: false,
-                selectable: false,
-                //routeId: 'pages-parent',
-                //id: 'pages-parent',
-
-                children: [
-                    {
-                        text: '应用管理',
-                        iconCls: 'x-fa fa-file-o',
-                        viewType: 'apps',
-                        leaf: true
-                    },
-
-                    {
-                        text: '分组管理',
-                        iconCls: 'x-fa fa-users',
-                        viewType: 'groups',
-                        leaf: true
-                    },
-                    {
-                        text: '菜单管理',
-                        iconCls: 'x-fa fa-times-circle',
-                        viewType: 'menus',
-                        leaf: true
-                    },
-                    {
-                        text: '按钮管理',
-                        iconCls: 'x-fa fa-hand-pointer-o',
-                        viewType: 'buttons',
-                        leaf: true
-                    },
-                    {
-                        text: '模块管理',
-                        iconCls: 'x-fa fa-cubes',
-                        viewType: 'modules',
-                        leaf: true
-                    },
-                    {
-                        text: '访问管理',
-                        iconCls: 'x-fa fa-mouse-pointer',
-                        viewType: 'accesses',
-                        leaf: true
-                    },
-                    {
-                        text: '角色管理',
-                        iconCls: 'x-fa fa-user-secret',
-                        viewType: 'roles',
-                        leaf: true
-                    },
-                    {
-                        text: '用户管理',
-                        iconCls: 'x-fa fa-user',
-                        viewType: 'users',
-                        leaf: true
-                    },
-                    {
-                        text: '机构管理',
-                        iconCls: 'x-fa fa-home',
-                        viewType: 'orgs',
-                        leaf: true
-                    },
-                    {
-                        text: 'Login',
-                        iconCls: 'x-fa fa-check',
-                        viewType: 'login',
-                        leaf: true
-                    },
-                    {
-                        text: 'Register',
-                        iconCls: 'x-fa fa-pencil-square-o',
-                        viewType: 'register',
-                        leaf: true
-                    },
-                    {
-                        text: 'Password Reset',
-                        iconCls: 'x-fa fa-lightbulb-o',
-                        viewType: 'passwordreset',
-                        leaf: true
-                    }
-                ]
             },
             {
                 text: 'Pages',

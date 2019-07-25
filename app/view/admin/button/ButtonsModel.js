@@ -6,6 +6,9 @@ Ext.define('Admin.view.admin.button.ButtonsModel', {
         parent_id: 0
     },
     stores: {
+        roletree: {
+            type: 'roletree'
+        },
         menutree: {
             type: 'menutree'
         },

@@ -137,6 +137,14 @@ Ext.define('Admin.view.admin.access.Accesses',{
 					}
 				},
 				'-',
+                {
+                    text: '角色',
+ 					ui: 'soft-green',
+					style: 'border-radius: 2px;',
+					iconCls: 'fa fa-lg fa-user-secret',
+					handler: 'onSetRole'
+                },
+                '-',
 				'->',
 				{
 					xtype: 'textfield',
@@ -169,7 +177,62 @@ Ext.define('Admin.view.admin.access.Accesses',{
 				selectionchange: 'onSelectionChange',
 				rowdblclick: 'onRowDbClick'
 			}
+        },
+        {
+            xtype: 'treepanel',
+            reference: 'roleTree',
+            itemId: 'roletree',
+            bind: '{roletree}',
+            hidden: true,
+            border: true,
+            style: 'border-color: #d0d0d0 !important;border-right-width: 1px !important;border-top-width: 0px !important;',
+            bodyBorder: false,
+            bodyStyle: 'border-top-width: 1px !important;border-bottom-width: 0px !important;',
+            rootVisible: true,
+            width: 300,
+            header: {
+                style: 'font-size: 13px;'
+            },
+            listeners: {
+                beforeitemexpand: 'onBeforeRoleTreeItemExpand'
+            },
+            title: {
+                text: '角色设置',
+                style: 'font-size: 13px;',
+                iconCls: 'fa fa-cog'
+            },
+            tools: [
+                {
+                    iconCls: 'fa fa-save',
+                    tooltip: '保存',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onSaveRoles'
+                },
+                {
+                    iconCls: 'fa fa-plus-square',
+                    tooltip: '展开所有',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onRoleTreeExpandAll'
+                },
+                {
+                    iconCls: 'fa fa-minus-square',
+                    tooltip: '折叠所有',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onRoleTreeCollapseAll'
+                },
+                {
+                    iconCls: 'fa fa-refresh',
+                    tooltip: '重置',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onRoleTreeRefresh'
+                },
+                {
+                    iconCls: 'fa fa-times',
+                    tooltip: '关闭',
+                    style: 'font-size: 13px;padding-top: 3px;',
+                    callback: 'onRoleTreeClose'
+                }
+            ]
         }
     ]
-
 });
