@@ -23,7 +23,7 @@ Ext.define('Admin.store.admin.AppTreeStore', {
     root: {
         id: 0,
         text: '应用树',
-        iconCls: 'x-fa fa-globe',
+        iconCls: 'x-fa fa-th-large',
         expanded: true
     },
 	listeners: {

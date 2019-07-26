@@ -23,7 +23,7 @@ Ext.define('Admin.store.admin.GroupTreeStore', {
     root: {
         id: 0,
         text: '分组树',
-        iconCls: 'x-fa fa-globe',
+        iconCls: 'x-fa fa-indent',
         expanded: true
     }
 });

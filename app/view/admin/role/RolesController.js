@@ -85,10 +85,6 @@ Ext.define('Admin.view.admin.role.RolesController', {
 		if(records && records.length > 0) {
 			config.hasCurrentRecord = true;
 		}
-
-		if(config.hasCurrentRecord) {
-			var record = records[0];
-		}
 		this.getViewModel().setData(config);
 
         this.hideAllTreeView();

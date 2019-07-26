@@ -2,6 +2,7 @@ Ext.define('Admin.view.admin.button.ButtonsModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.buttons',
     data: {
+        hasCurrentRecord: false,
         menu_id: 0,
         parent_id: 0
     },

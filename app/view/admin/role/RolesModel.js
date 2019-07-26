@@ -3,6 +3,7 @@ Ext.define('Admin.view.admin.role.RolesModel', {
     alias: 'viewmodel.roles',
     data: {
         settings: ['userTree','accessTree','menuTree','buttonTree'],
+        hasCurrentRecord: false,
         parent_id: 0
     },
     stores: {

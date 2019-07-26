@@ -76,7 +76,7 @@ Ext.define('Admin.view.admin.app.Apps',{
 			tbar: [
 				{
 					text: '新增',
-					ui: 'soft-green',
+					ui: 'green',
 					style: 'border-radius: 2px;',
 					iconCls: 'fa fa-lg fa-plus-circle',
 					handler: 'onAdd'

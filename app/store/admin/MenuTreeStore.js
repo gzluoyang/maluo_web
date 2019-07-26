@@ -23,7 +23,7 @@ Ext.define('Admin.store.admin.MenuTreeStore', {
     root: {
         id: 0,
         text: '菜单树',
-        iconCls: 'x-fa fa-globe',
+        iconCls: 'x-fa fa-list-ul',
         expanded: true
     }
 });

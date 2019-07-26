@@ -23,7 +23,7 @@ Ext.define('Admin.store.admin.AccessTreeStore', {
     root: {
         id: 0,
         text: '访问树',
-        iconCls: 'x-fa fa-lock',
+        iconCls: 'x-fa fa-cloud-upload',
         expanded: true
     }
 });

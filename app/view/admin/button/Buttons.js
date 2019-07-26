@@ -117,7 +117,7 @@ Ext.define('Admin.view.admin.button.Buttons',{
 			tbar: [
 				{
 					text: '新增',
-					ui: 'soft-green',
+					ui: 'green',
 					style: 'border-radius: 2px;',
 					iconCls: 'fa fa-lg fa-plus-circle',
 					handler: 'onAdd'
@@ -148,7 +148,10 @@ Ext.define('Admin.view.admin.button.Buttons',{
  					ui: 'soft-green',
 					style: 'border-radius: 2px;',
 					iconCls: 'fa fa-lg fa-user',
-					handler: 'onSetRole'
+					handler: 'onSetRole',
+					bind: {
+						disabled: '{!hasCurrentRecord}'
+					}
                 },
 				'-',
 				'->',

@@ -22,8 +22,8 @@ Ext.define('Admin.store.admin.ButtonTreeStore', {
 	},
     root: {
         id: 0,
-        text: '菜单树',
-        iconCls: 'x-fa fa-globe',
+        text: '按钮树',
+        iconCls: 'x-fa fa-hand-pointer-o',
         expanded: true
     }
 });

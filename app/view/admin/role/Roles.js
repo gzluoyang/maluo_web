@@ -107,7 +107,7 @@ Ext.define('Admin.view.admin.role.Roles',{
 			tbar: [
 				{
 					text: '新增',
-					ui: 'soft-green',
+					ui: 'green',
 					style: 'border-radius: 2px;',
 					iconCls: 'fa fa-lg fa-plus-circle',
 					handler: 'onAdd'
@@ -135,17 +135,23 @@ Ext.define('Admin.view.admin.role.Roles',{
 				'-',
                 {
                     text: '用户',
- 					ui: 'green',
+ 					ui: 'soft-green',
 					style: 'border-radius: 2px;',
 					iconCls: 'fa fa-lg fa-users',
-					handler: 'onSetUser'
+					handler: 'onSetUser',
+					bind: {
+						disabled: '{!hasCurrentRecord}'
+					}
                 },
                 {
                     text: '访问',
  					ui: 'blue',
 					style: 'border-radius: 2px;',
 					iconCls: 'fa fa-lg fa-cloud-upload',
-					handler: 'onSetAccess'
+					handler: 'onSetAccess',
+					bind: {
+						disabled: '{!hasCurrentRecord}'
+					}
                 },
                 '-',
                 {
@@ -153,14 +159,20 @@ Ext.define('Admin.view.admin.role.Roles',{
  					ui: 'soft-blue',
 					style: 'border-radius: 2px;',
 					iconCls: 'fa fa-lg fa-list-ul',
-					handler: 'onSetMenu'
+					handler: 'onSetMenu',
+					bind: {
+						disabled: '{!hasCurrentRecord}'
+					}
                 },
                 {
                     text: '按钮',
  					ui: 'soft-purple',
 					style: 'border-radius: 2px;',
 					iconCls: 'fa fa-lg fa-hand-pointer-o',
-					handler: 'onSetButton'
+					handler: 'onSetButton',
+					bind: {
+						disabled: '{!hasCurrentRecord}'
+					}
                 },
                 '-',
 				'->',
@@ -389,7 +401,7 @@ Ext.define('Admin.view.admin.role.Roles',{
                 beforeitemexpand: 'onBeforeButtonTreeItemExpand'
             },
             title: {
-                text: '菜单设置',
+                text: '按钮设置',
                 style: 'font-size: 13px;',
                 iconCls: 'fa fa-cog'
             },

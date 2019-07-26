@@ -23,7 +23,7 @@ Ext.define('Admin.store.admin.UserTreeStore', {
     root: {
         id: 0,
         text: '用户树',
-        iconCls: 'x-fa fa-user',
+        iconCls: 'x-fa fa-users',
         expanded: true
     }
 });

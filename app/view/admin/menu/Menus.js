@@ -116,7 +116,7 @@ Ext.define('Admin.view.admin.menu.Menus',{
 			tbar: [
 				{
 					text: '新增',
-					ui: 'soft-green',
+					ui: 'green',
 					style: 'border-radius: 2px;',
 					iconCls: 'fa fa-lg fa-plus-circle',
 					handler: 'onAdd'
@@ -146,8 +146,11 @@ Ext.define('Admin.view.admin.menu.Menus',{
                     text: '角色',
  					ui: 'soft-green',
 					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-user-secret',
-					handler: 'onSetRole'
+					iconCls: 'fa fa-lg fa-user',
+					handler: 'onSetRole',
+					bind: {
+						disabled: '{!hasCurrentRecord}'
+					}
                 },
                 '-',
 				'->',
