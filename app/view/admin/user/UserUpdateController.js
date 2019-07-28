@@ -5,5 +5,5 @@ Ext.define('Admin.view.admin.user.UserUpdateController', {
     onClose: function() {
         var win = this.getView();
         win.close();
-    },
+    }
 });

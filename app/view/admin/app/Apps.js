@@ -87,6 +87,7 @@ Ext.define('Admin.view.admin.app.Apps',{
 					style: 'border-radius: 2px;',
 					iconCls: 'fa fa-lg fa-edit',
 					handler: 'onEdit',
+                    hidden: true,
 					bind: {
 						disabled: '{!hasCurrentRecord}'
 					}
