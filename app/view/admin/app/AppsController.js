@@ -1,7 +1,9 @@
 Ext.define('Admin.view.admin.app.AppsController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.apps',
-    
+    onRender: function() {
+        //this.getViewModel().set('testHidden',false);
+    },
     onSearch: function() {
         var store = Ext.data.StoreManager.lookup('appStore');
 		var searchKeyField = this.lookup('searchKey');
