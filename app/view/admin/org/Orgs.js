@@ -31,7 +31,8 @@ Ext.define('Admin.view.admin.org.Orgs',{
             rootVisible: true,
             width: 200,
             listeners: {
-                itemclick: 'onSelectOrg'
+                itemclick: 'onSelectOrg',
+                drop: 'onTreeNodeDrop'
             },
             header: {
                 style: 'font-size: 13px;'
@@ -40,6 +41,13 @@ Ext.define('Admin.view.admin.org.Orgs',{
                 text: '树视图',
                 style: 'font-size: 13px;',
                 iconCls: 'fa fa-th-list'
+            },
+            draggable: true,
+            viewConfig: {
+                plugins: {
+                    ptype: 'treeviewdragdrop',
+                    ddGroup: 'roles'
+                }
             },
             tools: [
                 {

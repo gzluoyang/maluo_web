@@ -12,6 +12,28 @@ Ext.define('Admin.view.admin.role.RolesController', {
         this.search();
     },
 
+    onTreeNodeDrop: function(node,data,overModel,dropPosition,opts) {
+        var that = this;
+        var id = data.records[0].id;
+        var target_id= overModel.data.id;
+        var parent_id = target_id;
+        if(dropPosition !== 'append')
+            parent_id = overModel.data.parent_id;
+        
+        var url = '/api/admin/role/move';
+        Ext.Ajax.request({
+            url: url,
+            params: {
+                id: id,
+                parent_id: parent_id
+            },
+            success: function(response) {
+                var tree = that.lookup('treePanel');
+                tree.expandNode(overModel,true);
+            }
+        });
+    },
+
     onTreeRefresh: function() {
         var parent_id = this.getViewModel().get('parent_id');
         var treeStore = this.getStore('roletree');

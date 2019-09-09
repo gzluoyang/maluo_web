@@ -30,8 +30,16 @@ Ext.define('Admin.view.admin.role.Roles',{
             bodyStyle: 'border-top-width: 1px !important;border-bottom-width: 0px !important;',
             rootVisible: true,
             width: 200,
+            draggable: true,
+            viewConfig: {
+                plugins: {
+                    ptype: 'treeviewdragdrop',
+                    ddGroup: 'roles'
+                }
+            },
             listeners: {
-                itemclick: 'onSelectApp'
+                itemclick: 'onSelectApp',
+                drop: 'onTreeNodeDrop'
             },
             header: {
                 style: 'font-size: 13px;'

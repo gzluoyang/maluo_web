@@ -41,6 +41,12 @@ Ext.define('Admin.view.admin.group.Groups',{
                         onNodeDrop: function(targetNode, sourceNode, e, data) {
                             var target = e.record.data;
                             var source = data.records[0].data;
+
+                            if(target.leaf !== true) {
+                                Ext.Msg.alert('提示','只能移动到叶子节点');
+                                return false;
+                            }
+
                             if(target.id === source.app_id) {
                                 Ext.Msg.alert('提示','不能移动到相同的父节点!');
                                 return false;

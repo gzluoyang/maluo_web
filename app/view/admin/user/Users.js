@@ -30,6 +30,42 @@ Ext.define('Admin.view.admin.user.Users',{
             bodyStyle: 'border-top-width: 1px !important;border-bottom-width: 0px !important;',
             rootVisible: true,
             width: 200,
+            draggable: true,
+            viewConfig: {
+                plugins: {
+                    ptype: 'treeviewdragdrop',
+                    dropGroup: 'users',
+                    enableDrag: false,
+                    enableDrop: true,
+                    dropZone: {
+                        onNodeDrop: function(targetNode, sourceNode, e, data) {
+                            var target = e.record.data;
+                            var source = data.records[0].data;
+
+                            if(target.id === source.org_id) {
+                                Ext.Msg.alert('提示','不能移动到相同的父节点!');
+                                return false;
+                            }
+
+                            var id = source.id;
+                            var org_id= target.id;
+                            var url = '/api/admin/user/move';
+                            Ext.Ajax.request({
+                                url: url,
+                                params: {
+                                    id: id,
+                                    org_id: org_id 
+                                },
+                                success: function(response) {
+                                    var store = sourceNode.view.grid.store;
+                                    store.reload();
+                                }
+                            });
+                            return false;
+                        }
+                    }
+                }
+            },
             listeners: {
                 itemclick: 'onSelectOrg'
             },
@@ -70,6 +106,19 @@ Ext.define('Admin.view.admin.user.Users',{
 			bind: '{users}',
             bodyBorder: true,
             bodyStyle: 'border-top-width: 1px !important;',
+            viewConfig: {
+                plugins: {
+                    ptype: 'gridviewdragdrop',
+                    dragGroup: 'users',
+                    dropGroup: 'users',
+                    enableDrop: true,
+                    enableDrag: true,
+                    displayField: 'title',
+                    dragZone: {
+                        animRepair: false
+                    }
+                }
+            },
             columns: [
 				{xtype: 'rownumberer'},
                 {

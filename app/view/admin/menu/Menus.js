@@ -30,6 +30,47 @@ Ext.define('Admin.view.admin.menu.Menus',{
             bodyStyle: 'border-top-width: 1px !important;border-bottom-width: 0px !important;',
             rootVisible: true,
             width: 200,
+            draggable: true,
+            viewConfig: {
+                plugins: {
+                    ptype: 'treeviewdragdrop',
+                    dropGroup: 'menus',
+                    enableDrag: false,
+                    enableDrop: true,
+                    dropZone: {
+                        onNodeDrop: function(targetNode, sourceNode, e, data) {
+                            var target = e.record.data;
+                            var source = data.records[0].data;
+
+                            if(target.leaf !== true) {
+                                Ext.Msg.alert('提示','只能移动到叶子节点');
+                                return false;
+                            }
+
+                            if(target.id === source.group_id) {
+                                Ext.Msg.alert('提示','不能移动到相同的父节点!');
+                                return false;
+                            }
+
+                            var id = source.id;
+                            var group_id = target.id;
+                            var url = '/api/admin/menu/move';
+                            Ext.Ajax.request({
+                                url: url,
+                                params: {
+                                    id: id,
+                                    group_id: group_id
+                                },
+                                success: function(response) {
+                                    var store = sourceNode.view.grid.store;
+                                    store.reload();
+                                }
+                            });
+                            return false;
+                        }
+                    }
+                }
+            },
             listeners: {
                 itemclick: 'onSelectApp'
             },
@@ -67,6 +108,19 @@ Ext.define('Admin.view.admin.menu.Menus',{
 			bind: '{menus}',
             bodyBorder: true,
             bodyStyle: 'border-top-width: 1px !important;',
+            viewConfig: {
+                plugins: {
+                    ptype: 'gridviewdragdrop',
+                    dragGroup: 'menus',
+                    dropGroup: 'menus',
+                    enableDrop: true,
+                    enableDrag: true,
+                    displayField: 'title',
+                    dragZone: {
+                        animRepair: false
+                    }
+                }
+            },
             columns: [
 				{xtype: 'rownumberer'},
                 {
