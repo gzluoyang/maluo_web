@@ -14,23 +14,83 @@ Ext.define('Admin.view.main.MainController', {
         ':node': 'onRouteChange'
     },
 
+    loaded: false,
+    hashTag: 'dashboard',
     lastView: null,
 
+    init: function(view) {
+        this.initAppMenu();
+    },
+    initNavMenu: function(app_id) {
+        var me = this;
+        var viewModel = this.getViewModel();
+        var store = viewModel.getStore('navs');
+        var url = '/api/admin/home/menus';
+        Ext.Ajax.request({
+            url: url,
+            params: {
+                app_id: app_id
+            },
+            success: function(response,opts) {
+                var refs = me.getReferences();
+                var treeList = refs.navigationTreeList;
+                var data = Ext.decode(response.responseText);
+                var root = {
+                    expanded: true,
+                    children: data
+                };
+                store.setRoot(root);
+                treeList.setStore(store);
+                me.loaded = true;
+            }
+        });
+    },
+    initAppMenu: function() {
+        var me = this;
+        var url = '/api/admin/home/apps';
+        Ext.Ajax.request({
+            url: url,
+            success: function(response, opts) {
+                var refs = me.getReferences();
+                var segmentedbutton= refs.segmentedbutton;
+                var data = Ext.decode(response.responseText);
+                if(data && data.length > 0) {
+                    var item = data[0];
+                    var app_id = item.value;
+                    me.initNavMenu(app_id);
+                    
+                    data[0].pressed = true;
+                    segmentedbutton.add(data);
+                }
+            }
+        });
+    },
+    changeApp: function(button,newValue,oldValue,opts) {
+        if(newValue)
+            this.initNavMenu(newValue);
+    },
     setCurrentView: function(hashTag) {
         hashTag = (hashTag || '').toLowerCase();
+        this.hasTag = hashTag;
 
-        var me = this,
-            refs = me.getReferences(),
-            mainCard = refs.mainCardPanel,
-            mainLayout = mainCard.getLayout(),
-            navigationList = refs.navigationTreeList,
-            store = navigationList.getStore(),
-            node = store.findNode('routeId', hashTag) ||
-                   store.findNode('viewType', hashTag),
-            view = (node && node.get('viewType')) || 'page404',
-            lastView = me.lastView,
-            existingItem = mainCard.child('component[routeId=' + hashTag + ']'),
-            newView;
+        var me = this;
+        var refs = me.getReferences();
+        var mainCard = refs.mainCardPanel;
+        var mainLayout = mainCard.getLayout();
+        var navigationList = refs.navigationTreeList;
+
+        var viewModel = this.getViewModel();
+        var store = viewModel.getStore('navs');
+        var node = store.findNode('routeId', hashTag) ||
+               store.findNode('viewType', hashTag);
+        var view = (node && node.get('viewType')) || 'dashboard';
+
+        if(!this.loaded)
+            view = hashTag;
+
+        var lastView = me.lastView;
+        var existingItem = mainCard.child('component[routeId=' + hashTag + ']');
+        var newView;
 
         // Kill any previously routed window
         if (lastView && lastView.isWindow) {

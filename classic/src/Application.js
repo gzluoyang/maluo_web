@@ -4,6 +4,7 @@ Ext.define('Admin.Application', {
     name: 'Admin',
 
     stores: [
+        'NavigationStore',
         'NavigationTree'
     ],
 

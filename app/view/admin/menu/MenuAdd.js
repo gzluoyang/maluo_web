@@ -70,6 +70,12 @@ Ext.define('Admin.view.admin.menu.MenuAdd',{
                 },
                 {
                     xtype: 'textfield',
+                    fieldLabel: 'URL',
+                    name: 'url',
+                    labelAlign: 'right'
+                },
+                {
+                    xtype: 'textfield',
                     fieldLabel: '图标',
                     name: 'icon',
                     labelAlign: 'right'

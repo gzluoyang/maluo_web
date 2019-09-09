@@ -550,12 +550,12 @@
         "classic": {
             "toolkit": "classic",
             "theme": "theme-triton"
-        },
-
-        "modern": {
-            "toolkit": "modern",
-            "theme": "theme-triton"
         }
+
+//        "modern": {
+//            "toolkit": "modern",
+//            "theme": "theme-triton"
+//        }
     },
 
     /**

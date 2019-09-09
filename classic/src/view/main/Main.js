@@ -2,6 +2,7 @@ Ext.define('Admin.view.main.Main', {
     extend: 'Ext.container.Viewport',
 
     requires: [
+        //'Ext.ux.StatusBar',
         'Ext.button.Segmented',
         'Ext.list.Tree'
     ],
@@ -47,22 +48,12 @@ Ext.define('Admin.view.main.Main', {
                 {
                     xtype: 'segmentedbutton',
                     margin: '0 16 0 0',
-
-                    platformConfig: {
-                        ie9m: {
-                            hidden: true
-                        }
-                    },
-
-                    items: [{
-                        iconCls: 'x-fa fa-desktop',
-                        pressed: true
-                    }, {
-                        iconCls: 'x-fa fa-tablet',
-                        handler: 'onSwitchToModern',
-                        tooltip: 'Switch to modern toolkit'
-                    }]
+                    reference: 'segmentedbutton',
+                    listeners: {
+                        change: 'changeApp'
+                    }
                 },
+                '-',
                 {
                     iconCls:'x-fa fa-search',
                     ui: 'header',
@@ -117,7 +108,6 @@ Ext.define('Admin.view.main.Main', {
                     reference: 'navigationTreeList',
                     itemId: 'navigationTreeList',
                     ui: 'navigation',
-                    store: 'NavigationTree',
                     width: 250,
                     expanderFirst: false,
                     expanderOnly: false,
@@ -138,21 +128,21 @@ Ext.define('Admin.view.main.Main', {
                     }
                 }
             ]
-        },
-        Ext.create('Ext.ux.StatusBar',{
-            id: 'statusBar',
-            border: true,
-            defaultText: '默认状态',
-            defaultIconCls: 'fa fa-home',
-            text: '状态',
-            iconCls: 'fa fa-home',
-            items: [
-                {
-                    text: 'hello'
-                },
-                '->',
-                '其它'
-            ]
-        })
+        }
+//        Ext.create('Ext.ux.StatusBar',{
+//            id: 'statusBar',
+//            border: true,
+//            defaultText: '默认状态',
+//            defaultIconCls: 'fa fa-home',
+//            text: '状态',
+//            iconCls: 'fa fa-home',
+//            items: [
+//                {
+//                    text: 'hello'
+//                },
+//                '->',
+//                '其它'
+//            ]
+//        })
     ]
 });

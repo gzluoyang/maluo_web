@@ -75,6 +75,12 @@ Ext.define('Admin.view.admin.menu.Menus',{
 					width: 200
 				},
                 {
+					text: 'URL',
+					dataIndex: 'url',
+					sortable: false,
+	    			width: 200
+				},
+                {
 					text: '图标样式',
 					dataIndex: 'icon_cls',
 					sortable: false,
@@ -84,7 +90,7 @@ Ext.define('Admin.view.admin.menu.Menus',{
 					text: '图标',
 					dataIndex: 'icon',
 					sortable: false,
-				    width: 300
+				    width: 150
 				},
                 {
 					text: '排序',
@@ -105,14 +111,8 @@ Ext.define('Admin.view.admin.menu.Menus',{
                     format: 'Y-m-d H:i:s',
                     width: 150,
                     dataIndex: 'update_time'
-                },
-                {
-					text: '备注',
-					dataIndex: 'memo',
-					flex: 1,
-					sortable: false
-				}
-            ],
+                }
+           ],
 			tbar: [
 				{
 					text: '新增',

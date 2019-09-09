@@ -3,6 +3,7 @@ Ext.define('Admin.view.admin.group.Groups',{
     xtype: 'groups',
 
     requires: [
+        'Ext.tree.Panel',
         'Admin.view.admin.group.GroupsController',
         'Admin.view.admin.group.GroupsModel'
     ],
@@ -29,6 +30,41 @@ Ext.define('Admin.view.admin.group.Groups',{
             bodyBorder: false,
             bodyStyle: 'border-top-width: 1px !important;border-bottom-width: 0px !important;',
             rootVisible: true,
+            draggable: true,
+            viewConfig: {
+                plugins: {
+                    ptype: 'treeviewdragdrop',
+                    dropGroup: 'groups',
+                    enableDrag: false,
+                    enableDrop: true,
+                    dropZone: {
+                        onNodeDrop: function(targetNode, sourceNode, e, data) {
+                            var target = e.record.data;
+                            var source = data.records[0].data;
+                            if(target.id === source.app_id) {
+                                Ext.Msg.alert('提示','不能移动到相同的父节点!');
+                                return false;
+                            }
+
+                            var id = source.id;
+                            var app_id = target.id;
+                            var url = '/api/admin/group/move';
+                            Ext.Ajax.request({
+                                url: url,
+                                params: {
+                                    id: id,
+                                    app_id: app_id
+                                },
+                                success: function(response) {
+                                    var store = sourceNode.view.grid.store;
+                                    store.reload();
+                                }
+                            });
+                            return false;
+                        }
+                    }
+                }
+            },
             width: 200,
             listeners: {
                 itemclick: 'onSelectApp'
@@ -54,6 +90,19 @@ Ext.define('Admin.view.admin.group.Groups',{
 			bind: '{groups}',
             bodyBorder: true,
             bodyStyle: 'border-top-width: 1px !important;',
+            viewConfig: {
+                plugins: {
+                    ptype: 'gridviewdragdrop',
+                    dragGroup: 'groups',
+                    dropGroup: 'groups',
+                    enableDrop: true,
+                    enableDrag: true,
+                    displayField: 'title',
+                    dragZone: {
+                        animRepair: false
+                    }
+                }
+            },
             columns: [
 				{xtype: 'rownumberer'},
                 {

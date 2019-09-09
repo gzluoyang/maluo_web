@@ -75,6 +75,15 @@ Ext.define('Admin.view.admin.menu.MenuUpdate',{
 									readOnly: '{!isEditable}'
 								}
 							},
+                            {
+								xtype: 'textfield',
+								fieldLabel: 'URL',
+								name: 'url',
+								bind: {
+									value: '{info.url}',
+									readOnly: '{!isEditable}'
+								}
+							},
 							{
 								xtype: 'textfield',
 								fieldLabel: '图标',
@@ -87,7 +96,7 @@ Ext.define('Admin.view.admin.menu.MenuUpdate',{
 							{
 								xtype: 'textfield',
 								fieldLabel: '图标样式',
-								name: 'origin',
+								name: 'icon_cls',
 								bind: {
 									value: '{info.icon_cls}',
 									readOnly: '{!isEditable}'
