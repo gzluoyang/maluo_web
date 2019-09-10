@@ -213,6 +213,7 @@ Ext.define('Admin.view.admin.group.Groups',{
                 displayInfo: true
             },
 			listeners: {
+                drop: 'onGridDrop',
 				selectionchange: 'onSelectionChange',
 				rowdblclick: 'onRowDbClick'
 			}

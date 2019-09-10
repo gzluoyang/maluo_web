@@ -78,6 +78,19 @@ Ext.define('Admin.view.admin.role.Roles',{
 			bind: '{roles}',
             bodyBorder: true,
             bodyStyle: 'border-top-width: 1px !important;',
+            viewConfig: {
+                plugins: {
+                    ptype: 'gridviewdragdrop',
+                    dragGroup: 'role_grid',
+                    dropGroup: 'role_grid',
+                    enableDrop: true,
+                    enableDrag: true,
+                    displayField: 'title',
+                    dragZone: {
+                        animRepair: false
+                    }
+                }
+            },
             columns: [
 				{xtype: 'rownumberer'},
                 {
@@ -212,6 +225,7 @@ Ext.define('Admin.view.admin.role.Roles',{
                 displayInfo: true
             },
 			listeners: {
+                drop: 'onGridDrop',
 				selectionchange: 'onSelectionChange',
 				rowdblclick: 'onRowDbClick'
 			}

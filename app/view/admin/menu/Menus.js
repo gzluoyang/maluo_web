@@ -236,6 +236,7 @@ Ext.define('Admin.view.admin.menu.Menus',{
                 displayInfo: true
             },
 			listeners: {
+                drop: 'onGridDrop',
 				selectionchange: 'onSelectionChange',
 				rowdblclick: 'onRowDbClick'
 			}

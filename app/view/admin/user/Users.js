@@ -224,6 +224,7 @@ Ext.define('Admin.view.admin.user.Users',{
                 displayInfo: true
             },
 			listeners: {
+                drop: 'onGridDrop',
 				selectionchange: 'onSelectionChange',
 				rowdblclick: 'onRowDbClick'
 			}

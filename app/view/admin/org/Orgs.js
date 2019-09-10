@@ -78,6 +78,19 @@ Ext.define('Admin.view.admin.org.Orgs',{
 			bind: '{orgs}',
             bodyBorder: true,
             bodyStyle: 'border-top-width: 1px !important;',
+            viewConfig: {
+                plugins: {
+                    ptype: 'gridviewdragdrop',
+                    dragGroup: 'org_grid',
+                    dropGroup: 'org_grid',
+                    enableDrop: true,
+                    enableDrag: true,
+                    displayField: 'title',
+                    dragZone: {
+                        animRepair: false
+                    }
+                }
+            },
             columns: [
 				{xtype: 'rownumberer'},
                 {
@@ -170,6 +183,7 @@ Ext.define('Admin.view.admin.org.Orgs',{
                 displayInfo: true
             },
 			listeners: {
+                drop: 'onGridDrop',
 				selectionchange: 'onSelectionChange',
 				rowdblclick: 'onRowDbClick'
 			}

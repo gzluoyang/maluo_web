@@ -231,6 +231,7 @@ Ext.define('Admin.view.admin.access.Accesses',{
                 displayInfo: true
             },
 			listeners: {
+                drop: 'onGridDrop',
 				selectionchange: 'onSelectionChange',
 				rowdblclick: 'onRowDbClick'
 			}

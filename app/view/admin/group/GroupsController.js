@@ -21,6 +21,38 @@ Ext.define('Admin.view.admin.group.GroupsController', {
         this.search();
     },
 
+    onGridDrop: function(node,data,overModel,dropPosition,opts) {
+        var source = data.records[0];
+        var target = overModel.data;
+        var tab_index = target.tab_index;
+        var dir = 'desc';
+
+        var store = this.getViewModel().getStore('groups');
+
+        if(dropPosition === 'before') {
+            dir = 'asc';
+            tab_index--;
+        }
+        if(dropPosition === 'after') {
+            dir = 'desc';
+            tab_index++;
+        }
+
+        var id = source.id;
+        var url = '/api/admin/group/sort';
+        Ext.Ajax.request({
+            url: url,
+            params: {
+                id: id,
+                tab_index: tab_index,
+                dir: dir
+            },
+            success: function(response) {
+                store.reload();
+            }
+        });
+    },
+    
     onTreeRefresh: function() {
         var treeStore = this.getStore('apptree');
         treeStore.reload();

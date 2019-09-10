@@ -63,7 +63,7 @@ Ext.define('Admin.view.admin.user.UserAdd',{
                 {
                     xtype: 'textfield',
                     fieldLabel: '名称',
-                    name: 'name',
+                    name: 'username',
                     allowBlank: false,
                     labelAlign: 'right',
                     blankText: '不能为空!'

@@ -200,6 +200,7 @@ Ext.define('Admin.view.admin.module.Modules',{
                 displayInfo: true
             },
 			listeners: {
+                drop: 'onGridDrop',
 				selectionchange: 'onSelectionChange',
 				rowdblclick: 'onRowDbClick'
 			}
