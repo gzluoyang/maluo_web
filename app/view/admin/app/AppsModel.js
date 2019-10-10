@@ -2,12 +2,46 @@ Ext.define('Admin.view.admin.app.AppsModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.apps',
     data: {
-        testHidden: false,
+        menu: 'apps',
+        buttons: {},
         hasCurrentRecord: false
     },
 	formulas: {
-		isEditable: function(get) {
-			var actinoModel = get('actionModel');
+        textAdd: function(get) {
+            var buttons = get('buttons');
+            var text = '';
+            if(buttons.apps_add)
+                text = buttons.apps_add.title;
+            return text;
+        },
+        iconClsAdd: function(get) {
+            var buttons = get('buttons');
+            var iconCls = '';
+            if(buttons.apps_add)
+                iconCls = buttons.apps_add.icon_cls;
+            console.log(iconCls);
+            return iconCls;
+        },
+		hasAdd: function(get) {
+			var buttons = get('buttons');
+            if(buttons.apps_add)
+                return true;
+            else
+                return false;
+		},
+		hasEdit: function(get) {
+			var buttons = get('buttons');
+            if(buttons.apps_edit)
+                return true;
+            else
+                return false;
+		},
+		hasDel: function(get) {
+			var buttons = get('buttons');
+            if(buttons.apps_del)
+                return true;
+            else
+                return false;
 		}
     },
     stores: {

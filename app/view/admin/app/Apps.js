@@ -27,6 +27,19 @@ Ext.define('Admin.view.admin.app.Apps',{
             flex: 1,
 			margin: '8 0 0 0',
 			bind: '{apps}',
+            viewConfig: {
+                plugins: {
+                    ptype: 'gridviewdragdrop',
+                    dragGroup: 'apps',
+                    dropGroup: 'apps',
+                    enableDrop: true,
+                    enableDrag: true,
+                    displayField: 'title',
+                    dragZone: {
+                        animRepair: false
+                    }
+                }
+            },
             columns: [
 				{xtype: 'rownumberer'},
                 {
@@ -75,11 +88,16 @@ Ext.define('Admin.view.admin.app.Apps',{
             ],
 			tbar: [
 				{
-					text: '新增',
+					//text: '新增',
 					ui: 'green',
 					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-plus-circle',
-					handler: 'onAdd'
+					//iconCls: 'fa fa-lg fa-plus-circle',
+					handler: 'onAdd',
+                    bind: {
+                        text: '{textAdd}',
+                        iconCls: '{iconClsAdd}',
+                        hidden: '{!hasAdd}'
+                    }
 				},
 				{
 					text: '修改',
@@ -88,7 +106,7 @@ Ext.define('Admin.view.admin.app.Apps',{
 					iconCls: 'fa fa-lg fa-edit',
 					handler: 'onEdit',
 					bind: {
-                        hidden: '{testHidden}',
+                        hidden: '{!hasEdit}',
 						disabled: '{!hasCurrentRecord}'
 					}
 				},
@@ -99,6 +117,7 @@ Ext.define('Admin.view.admin.app.Apps',{
 					iconCls: 'fa fa-lg fa-times-circle',
 					handler: 'onRemove',
 					bind: {
+                        hidden: '{!hasDel}',
 						disabled: '{!hasCurrentRecord}'
 					}
 				},
@@ -135,6 +154,7 @@ Ext.define('Admin.view.admin.app.Apps',{
 			,
 			listeners: {
                 render: 'onRender',
+                drop: 'onGridDrop',
 				selectionchange: 'onSelectionChange',
 				rowdblclick: 'onRowDbClick'
 			}

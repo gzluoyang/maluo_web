@@ -70,6 +70,14 @@ Ext.define('Admin.view.admin.button.ButtonAdd',{
                 },
                 {
                     xtype: 'textfield',
+                    fieldLabel: '关键字',
+                    name: 'keyword',
+                    allowBlank: false,
+                    labelAlign: 'right',
+                    blankText: '不能为空!'
+                },
+                {
+                    xtype: 'textfield',
                     fieldLabel: '图标',
                     name: 'icon',
                     labelAlign: 'right'

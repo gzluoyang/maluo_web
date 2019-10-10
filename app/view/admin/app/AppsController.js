@@ -1,6 +1,36 @@
 Ext.define('Admin.view.admin.app.AppsController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.apps',
+    init: function(view) {
+        var that = this;
+        var model = this.getViewModel();
+        var menu_key = model.get('menu');
+        Ext.Ajax.request({
+            url: '/api/admin/home/buttons',
+            params: {
+                menu_key: menu_key
+            },
+            success: function(response) {
+                var obj = Ext.decode(response.responseText);
+                var success = obj.success;
+                if(success === true) {
+                    var buttons = {};
+                    var data = obj.data;
+                    var n = data.length;
+                    for(var i=0;i<n;i++) {
+                        var keyword = data[i].keyword;
+                        buttons[keyword] = data[i];
+                    }
+                    that.getViewModel().set('buttons',buttons);
+                }
+            }
+        });
+        model.set({
+            buttons: {
+                apps_add: true
+            }
+        });
+    },
     onRender: function() {
         //this.getViewModel().set('testHidden',false);
     },
@@ -25,6 +55,38 @@ Ext.define('Admin.view.admin.app.AppsController', {
 		store.loadPage(1);
 	},
 
+    onGridDrop: function(node,data,overModel,dropPosition,opts) {
+        var source = data.records[0];
+        var target = overModel.data;
+        var tab_index = target.tab_index;
+        var dir = 'desc';
+
+        var store = this.getViewModel().getStore('apps');
+
+        if(dropPosition === 'before') {
+            dir = 'asc';
+            tab_index--;
+        }
+        if(dropPosition === 'after') {
+            dir = 'desc';
+            tab_index++;
+        }
+
+        var id = source.id;
+        var url = '/api/admin/app/sort';
+        Ext.Ajax.request({
+            url: url,
+            params: {
+                id: id,
+                tab_index: tab_index,
+                dir: dir
+            },
+            success: function(response) {
+                store.reload();
+            }
+        });
+    },
+ 
 	onSelectionChange: function(me,records,eOpts) {
 		var config = {
 			hasCurrentRecord: false

@@ -77,6 +77,17 @@ Ext.define('Admin.view.admin.button.ButtonUpdate',{
 							},
 							{
 								xtype: 'textfield',
+								fieldLabel: '关键字',
+								name: 'keyword',
+								allowBlank: false,
+								blankText: '不能为空!',
+								bind: {
+									value: '{info.keyword}',
+									readOnly: '{!isEditable}'
+								}
+							},
+							{
+								xtype: 'textfield',
 								fieldLabel: '图标',
 								name: 'icon',
 								bind: {
@@ -87,7 +98,7 @@ Ext.define('Admin.view.admin.button.ButtonUpdate',{
 							{
 								xtype: 'textfield',
 								fieldLabel: '图标样式',
-								name: 'origin',
+								name: 'icon_cls',
 								bind: {
 									value: '{info.icon_cls}',
 									readOnly: '{!isEditable}'

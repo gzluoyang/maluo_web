@@ -127,7 +127,14 @@ Ext.define('Admin.view.admin.button.Buttons',{
                 {
 					text: '标题',
 					dataIndex: 'title',
+                    flex: 1,
 					width: 200
+				},
+                {
+					text: '关键字',
+					dataIndex: 'keyword',
+					sortable: false,
+	    			width: 150
 				},
                 {
 					text: '图标样式',
@@ -160,13 +167,7 @@ Ext.define('Admin.view.admin.button.Buttons',{
                     format: 'Y-m-d H:i:s',
                     width: 150,
                     dataIndex: 'update_time'
-                },
-                {
-					text: '备注',
-					dataIndex: 'memo',
-					flex: 1,
-					sortable: false
-				}
+                }
             ],
 			tbar: [
 				{
