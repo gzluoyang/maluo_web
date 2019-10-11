@@ -1,7 +1,37 @@
 Ext.define('Admin.view.admin.org.OrgsController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.orgs',
-
+    init: function(view) {
+        var that = this;
+        var model = this.getViewModel();
+        var menu_key = model.get('menu');
+        Ext.Ajax.request({
+            url: '/api/admin/home/buttons',
+            params: {
+                menu_key: menu_key
+            },
+            success: function(response) {
+                var obj = Ext.decode(response.responseText);
+                var success = obj.success;
+                if(success === true) {
+                    var buttons = {};
+                    var data = obj.data;
+                    var n = data.length;
+                    for(var i=0;i<n;i++) {
+                        var keyword = data[i].keyword;
+                        buttons[keyword] = data[i];
+                    }
+                    that.getViewModel().set('buttons',buttons);
+                }
+            }
+        });
+        model.set({
+            buttons: {
+                orgs_add: true
+            }
+        });
+    },
+ 
     onSelectOrg: function(me,record,index,e,eOpts) {
         var id = record.get('id');
         var data = {

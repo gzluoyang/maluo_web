@@ -160,41 +160,60 @@ Ext.define('Admin.view.admin.user.Users',{
             ],
 			tbar: [
 				{
-					text: '新增',
 					ui: 'soft-green',
 					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-plus-circle',
+                    bind: {
+                        text: '{textAdd}',
+                        iconCls: '{iconClsAdd}',
+                        hidden: '{!hasAdd}'
+                    },
 					handler: 'onAdd'
 				},
 				{
-					text: '显示',
 					ui: 'soft-blue',
 					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-info',
 					handler: 'onShowInfo',
 					bind: {
+                        text: '{textEdit}',
+                        iconCls: '{iconClsEdit}',
+                        hidden: '{!hasEdit}',
 						disabled: '{!hasCurrentRecord}'
 					}
 				},
 				{
-					text: '删除',
 					ui: 'soft-red',
 					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-times-circle',
 					handler: 'onRemove',
 					bind: {
+                        text: '{textDel}',
+                        iconCls: '{iconClsDel}',
+                        hidden: '{!hasDel}',
 						disabled: '{!hasCurrentRecord}'
 					}
 				},
-				'-',
+ 				{
+					xtype: 'tbseparator',
+                    bind: {
+                        hidden: '{!hasSplit1}'
+                    }
+				},
                 {
-                    text: '角色',
  					ui: 'soft-green',
 					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-user-secret',
+                    bind: {
+                        text: '{textRole}',
+                        iconCls: '{iconClsRole}',
+                        hidden: '{!hasRole}',
+						disabled: '{!hasCurrentRecord}'
+					},
 					handler: 'onSetRole'
                 },
-                '-',
+ 				{
+					xtype: 'tbseparator',
+                    bind: {
+                        hidden: '{!hasSplit2}'
+                    }
+				},
 				'->',
 				{
 					xtype: 'textfield',

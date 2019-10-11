@@ -167,7 +167,7 @@ Ext.define('Admin.view.admin.menu.Menus',{
                     dataIndex: 'update_time'
                 }
            ],
-			tbar: [
+		   tbar: [
 				{
 					ui: 'green',
 					style: 'border-radius: 2px;',
