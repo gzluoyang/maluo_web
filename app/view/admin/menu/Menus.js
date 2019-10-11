@@ -169,10 +169,15 @@ Ext.define('Admin.view.admin.menu.Menus',{
            ],
 			tbar: [
 				{
-					text: '新增',
+					//text: '新增',
 					ui: 'green',
 					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-plus-circle',
+                    bind: {
+                        text: '{textAdd}',
+                        iconCls: '{iconClsAdd}',
+                        hidden: '{!hasAdd}'
+                    },
+					//iconCls: 'fa fa-lg fa-plus-circle',
 					handler: 'onAdd'
 				},
 				{

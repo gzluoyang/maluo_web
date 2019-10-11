@@ -1,7 +1,37 @@
 Ext.define('Admin.view.admin.menu.MenusController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.menus',
-
+    init: function(view) {
+        var that = this;
+        var model = this.getViewModel();
+        var menu_key = model.get('menu');
+        Ext.Ajax.request({
+            url: '/api/admin/home/buttons',
+            params: {
+                menu_key: menu_key
+            },
+            success: function(response) {
+                var obj = Ext.decode(response.responseText);
+                var success = obj.success;
+                if(success === true) {
+                    var buttons = {};
+                    var data = obj.data;
+                    var n = data.length;
+                    for(var i=0;i<n;i++) {
+                        var keyword = data[i].keyword;
+                        buttons[keyword] = data[i];
+                    }
+                    that.getViewModel().set('buttons',buttons);
+                }
+            }
+        });
+        model.set({
+            buttons: {
+                menus_add: true
+            }
+        });
+    },
+ 
     onSelectApp: function(me,record,index,e,eOpts) {
         var id = record.get('id');
         var leaf = record.get('leaf');
