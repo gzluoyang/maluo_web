@@ -1,6 +1,36 @@
 Ext.define('Admin.view.admin.module.ModulesController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.modules',
+    init: function(view) {
+        var that = this;
+        var model = this.getViewModel();
+        var menu_key = model.get('menu');
+        Ext.Ajax.request({
+            url: '/api/admin/home/buttons',
+            params: {
+                menu_key: menu_key
+            },
+            success: function(response) {
+                var obj = Ext.decode(response.responseText);
+                var success = obj.success;
+                if(success === true) {
+                    var buttons = {};
+                    var data = obj.data;
+                    var n = data.length;
+                    for(var i=0;i<n;i++) {
+                        var keyword = data[i].keyword;
+                        buttons[keyword] = data[i];
+                    }
+                    that.getViewModel().set('buttons',buttons);
+                }
+            }
+        });
+        model.set({
+            buttons: {
+                modules_add: true
+            }
+        });
+    },
  
 	onTreeStoreLoad: function(me,records,successful,operation,eOpts) {
 		var n = records.length;
