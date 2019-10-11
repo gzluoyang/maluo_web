@@ -78,6 +78,34 @@ Ext.define('Admin.view.admin.menu.MenusModel', {
                 return true;
             else
                 return false;
+		},
+        textRole: function(get) {
+            var buttons = get('buttons');
+            var text = '';
+            if(buttons.menus_role)
+                text = buttons.menus_role.title;
+            return text;
+        },
+        iconClsRole: function(get) {
+            var buttons = get('buttons');
+            var iconCls = '';
+            if(buttons.menus_role)
+                iconCls = buttons.menus_role.icon_cls;
+            return iconCls;
+        },
+		hasRole: function(get) {
+			var buttons = get('buttons');
+            if(buttons.menus_role)
+                return true;
+            else
+                return false;
+		},
+		hasSplit2: function(get) {
+			var buttons = get('buttons');
+            if(buttons.menus_split2)
+                return true;
+            else
+                return false;
 		}
     },
     stores: {
