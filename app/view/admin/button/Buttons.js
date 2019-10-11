@@ -171,44 +171,60 @@ Ext.define('Admin.view.admin.button.Buttons',{
             ],
 			tbar: [
 				{
-					text: '新增',
 					ui: 'green',
 					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-plus-circle',
+                    bind: {
+                        text: '{textAdd}',
+                        iconCls: '{iconClsAdd}',
+                        hidden: '{!hasAdd}'
+                    },
 					handler: 'onAdd'
 				},
 				{
-					text: '修改',
 					ui: 'soft-blue',
 					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-edit',
 					handler: 'onEdit',
 					bind: {
+                        text: '{textEdit}',
+                        iconCls: '{iconClsEdit}',
+                        hidden: '{!hasEdit}',
 						disabled: '{!hasCurrentRecord}'
 					}
 				},
 				{
-					text: '删除',
 					ui: 'soft-red',
 					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-times-circle',
 					handler: 'onRemove',
 					bind: {
+                        text: '{textDel}',
+                        iconCls: '{iconClsDel}',
+                        hidden: '{!hasDel}',
 						disabled: '{!hasCurrentRecord}'
 					}
 				},
-				'-',
+ 				{
+					xtype: 'tbseparator',
+                    bind: {
+                        hidden: '{!hasSplit1}'
+                    }
+				},
                 {
-                    text: '角色',
  					ui: 'soft-green',
 					style: 'border-radius: 2px;',
-					iconCls: 'fa fa-lg fa-user',
 					handler: 'onSetRole',
 					bind: {
+                        text: '{textRole}',
+                        iconCls: '{iconClsRole}',
+                        hidden: '{!hasRole}',
 						disabled: '{!hasCurrentRecord}'
 					}
                 },
-				'-',
+ 				{
+					xtype: 'tbseparator',
+                    bind: {
+                        hidden: '{!hasSplit2}'
+                    }
+				},
 				'->',
 				{
 					xtype: 'textfield',
