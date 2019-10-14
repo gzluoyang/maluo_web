@@ -21,13 +21,14 @@ Ext.define('Admin.view.authentication.AuthenticationController', {
 			url: '/api/admin/user/login',
 			success: function(form, action) {
 				that.redirectTo('dashboard', true);
+                window.location.reload();
 			},
 			failure: function(form, action) {
 				Ext.MessageBox.alert({
 					title: '异常',
 					iconCls: 'fa fa-times-circle',
 					buttons: Ext.MessageBox.OK,
-					message: action.result.msg
+					message: action.result.message
 				});
 			}
 		});

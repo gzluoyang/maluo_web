@@ -66,7 +66,7 @@ Ext.define('Admin.view.main.Main', {
                     ui: 'header',
                     href: '#email',
                     hrefTarget: '_self',
-                    tooltip: 'Check your email'
+                    tooltip: '系统消息'
                 },
                 {
                     iconCls:'x-fa fa-question',
@@ -83,8 +83,16 @@ Ext.define('Admin.view.main.Main', {
                     tooltip: 'See your profile'
                 },
                 {
+                    iconCls:'x-fa fa-power-off',
+                    ui: 'header',
+                    //href: '/api/admin/user/logout',
+                    //hrefTarget: '_self',
+					handler: 'onLogout',
+                    tooltip: '重新登录'
+                },
+                {
                     xtype: 'tbtext',
-                    text: 'Goff Smith',
+                    text: '张小明',
                     cls: 'top-user-name'
                 },
                 {

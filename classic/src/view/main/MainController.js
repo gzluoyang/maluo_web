@@ -18,8 +18,28 @@ Ext.define('Admin.view.main.MainController', {
     hashTag: 'dashboard',
     lastView: null,
 
+    onMainViewRender:function() {
+        if (!window.location.hash) {
+            this.redirectTo("dashboard");
+        }
+    },
+
     init: function(view) {
-        this.initAppMenu();
+        var me = this;
+        var url = '/api/admin/home/isLogin';
+		Ext.Ajax.request({
+			url: url
+		}).then(function(response, opts) {
+ 			var obj = Ext.decode(response.responseText);
+			if(obj.success === false) {
+                me.redirectTo('login', true);
+                return;
+            }
+
+            //me.initAppMenu();
+        },function(response,opt){
+            me.redirectTo('login', true);
+        });
     },
     initNavMenu: function(app_id) {
         var me = this;
@@ -43,27 +63,37 @@ Ext.define('Admin.view.main.MainController', {
                 treeList.setStore(store);
                 me.loaded = true;
             }
-        });
+       });
     },
     initAppMenu: function() {
         var me = this;
         var url = '/api/admin/home/apps';
-        Ext.Ajax.request({
-            url: url,
-            success: function(response, opts) {
-                var refs = me.getReferences();
-                var segmentedbutton= refs.segmentedbutton;
-                var data = Ext.decode(response.responseText);
-                if(data && data.length > 0) {
-                    var item = data[0];
-                    var app_id = item.value;
-                    me.initNavMenu(app_id);
-                    
-                    data[0].pressed = true;
-                    segmentedbutton.add(data);
-                }
+		Ext.Ajax.request({
+			url: url
+		}).then(function(response, opts) {
+            var refs = me.getReferences();
+            var segmentedbutton= refs.segmentedbutton;
+            var data = Ext.decode(response.responseText);
+            if(data && data.length > 0) {
+                var item = data[0];
+                var app_id = item.value;
+                me.initNavMenu(app_id);
+                
+                data[0].pressed = true;
+                segmentedbutton.add(data);
             }
-        });
+		},function(response, opts) {
+			var obj = Ext.decode(response.responseText);
+			Ext.MessageBox.alert({
+				title: '错误',
+				iconCls: 'fa fa-times-circle',
+				buttons: Ext.MessageBox.OK,
+                fn: function() {
+                    me.redirectTo('login', true);
+                },
+				message: obj.message
+			});
+		});
     },
     changeApp: function(button,newValue,oldValue,opts) {
         if(newValue)
@@ -71,9 +101,13 @@ Ext.define('Admin.view.main.MainController', {
     },
     setCurrentView: function(hashTag) {
         hashTag = (hashTag || '').toLowerCase();
-        this.hasTag = hashTag;
+        this.hashTag = hashTag;
 
         var me = this;
+
+        if(hashTag == 'dashboard')
+            me.initAppMenu();
+
         var refs = me.getReferences();
         var mainCard = refs.mainCardPanel;
         var mainLayout = mainCard.getLayout();
@@ -83,7 +117,7 @@ Ext.define('Admin.view.main.MainController', {
         var store = viewModel.getStore('navs');
         var node = store.findNode('routeId', hashTag) ||
                store.findNode('viewType', hashTag);
-        var view = (node && node.get('viewType')) || 'dashboard';
+        var view = (node && node.get('viewType')) || 'login';
 
         if(!this.loaded)
             view = hashTag;
@@ -197,12 +231,6 @@ Ext.define('Admin.view.main.MainController', {
         }
     },
 
-    onMainViewRender:function() {
-        if (!window.location.hash) {
-            this.redirectTo("dashboard");
-        }
-    },
-
     onRouteChange:function(id){
         this.setCurrentView(id);
     },
@@ -232,5 +260,35 @@ Ext.define('Admin.view.main.MainController', {
 
     onEmailRouteChange: function () {
         this.setCurrentView('email');
-    }
+    },
+
+	onLogout: function() {
+		var that = this;
+		Ext.Ajax.request({
+			url: '/api/admin/user/logout',
+			method: 'post',
+			scope: that,
+		}).then(function(response, opts) {
+			var obj = Ext.decode(response.responseText);
+			if(obj.success == true) {
+				that.redirectTo("login", true);
+                window.location.reload();
+			} else {
+				Ext.MessageBox.alert({
+					title: '错误',
+					iconCls: 'fa fa-times-circle',
+					buttons: Ext.MessageBox.OK,
+					message: obj.msg
+				});
+			}
+		},function(response, opts) {
+			var obj = Ext.decode(response.responseText);
+			Ext.MessageBox.alert({
+				title: '错误',
+				iconCls: 'fa fa-times-circle',
+				buttons: Ext.MessageBox.OK,
+				message: obj.msg
+			});
+		});
+	}
 });
