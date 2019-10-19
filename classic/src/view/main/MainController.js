@@ -36,7 +36,7 @@ Ext.define('Admin.view.main.MainController', {
                 return;
             }
 
-            //me.initAppMenu();
+            me.initAppMenu();
         },function(response,opt){
             me.redirectTo('login', true);
         });
@@ -104,9 +104,6 @@ Ext.define('Admin.view.main.MainController', {
         this.hashTag = hashTag;
 
         var me = this;
-
-        if(hashTag == 'dashboard')
-            me.initAppMenu();
 
         var refs = me.getReferences();
         var mainCard = refs.mainCardPanel;
