@@ -114,9 +114,14 @@ Ext.define('Admin.view.main.MainController', {
         var store = viewModel.getStore('navs');
         var node = store.findNode('routeId', hashTag) ||
                store.findNode('viewType', hashTag);
-        var view = (node && node.get('viewType')) || 'login';
+        var view = (node && node.get('viewType'));
 
-        if(!this.loaded)
+        /*
+        if(hashTag == 'login' || hashTag == 'dashboard' || hashTag == 'faq')
+            view = hashTag;
+        */
+
+        if(!view)
             view = hashTag;
 
         var lastView = me.lastView;

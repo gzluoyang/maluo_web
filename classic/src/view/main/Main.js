@@ -2,6 +2,7 @@ Ext.define('Admin.view.main.Main', {
     extend: 'Ext.container.Viewport',
 
     requires: [
+        'Ext.dashboard.Dashboard',
         //'Ext.ux.StatusBar',
         'Ext.button.Segmented',
         'Ext.list.Tree'
@@ -34,7 +35,7 @@ Ext.define('Admin.view.main.Main', {
                     xtype: 'component',
                     reference: 'senchaLogo',
                     cls: 'sencha-logo',
-                    html: '<div class="main-logo"><img src="resources/images/company-logo.png">Sencha</div>',
+                    html: '<div class="main-logo"><img src="resources/images/logo.png">信息管理平台</div>',
                     width: 250
                 },
                 {
@@ -54,6 +55,7 @@ Ext.define('Admin.view.main.Main', {
                     }
                 },
                 '-',
+                /*
                 {
                     iconCls:'x-fa fa-search',
                     ui: 'header',
@@ -68,25 +70,24 @@ Ext.define('Admin.view.main.Main', {
                     hrefTarget: '_self',
                     tooltip: '系统消息'
                 },
+                */
                 {
                     iconCls:'x-fa fa-question',
                     ui: 'header',
                     href: '#faq',
                     hrefTarget: '_self',
-                    tooltip: 'Help / FAQ\'s'
+                    tooltip: '帮助/FAQ'
                 },
                 {
                     iconCls:'x-fa fa-th-large',
                     ui: 'header',
-                    href: '#profile',
+                    href: '#dashboard',
                     hrefTarget: '_self',
-                    tooltip: 'See your profile'
+                    tooltip: '显示桌面'
                 },
                 {
                     iconCls:'x-fa fa-power-off',
                     ui: 'header',
-                    //href: '/api/admin/user/logout',
-                    //hrefTarget: '_self',
 					handler: 'onLogout',
                     tooltip: '重新登录'
                 },
