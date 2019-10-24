@@ -1,6 +1,6 @@
 Ext.define('Admin.view.dashboard.Dashboard', {
     extend: 'Ext.container.Container',
-    xtype: 'admindashboard',
+    xtype: 'dashboard',
 
     requires: [
         'Ext.ux.layout.ResponsiveColumn'

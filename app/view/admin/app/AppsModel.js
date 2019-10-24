@@ -76,11 +76,42 @@ Ext.define('Admin.view.admin.app.AppsModel', {
                 return true;
             else
                 return false;
+		},
+        textRole: function(get) {
+            var buttons = get('buttons');
+            var text = '';
+            if(buttons.apps_role)
+                text = buttons.apps_role.title;
+            return text;
+        },
+        iconClsRole: function(get) {
+            var buttons = get('buttons');
+            var iconCls = '';
+            if(buttons.apps_role)
+                iconCls = buttons.apps_role.icon_cls;
+            return iconCls;
+        },
+		hasRole: function(get) {
+			var buttons = get('buttons');
+            if(buttons.apps_role)
+                return true;
+            else
+                return false;
+		},
+		hasSplit2: function(get) {
+			var buttons = get('buttons');
+            if(buttons.apps_split2)
+                return true;
+            else
+                return false;
 		}
     },
     stores: {
         apps: {
             type: 'apps'
+        },
+        roletree: {
+            type: 'roletree'
         }
     }
 });

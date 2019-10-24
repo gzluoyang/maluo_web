@@ -32,7 +32,6 @@ Ext.define('Admin.view.admin.app.AppsController', {
         });
     },
     onRender: function() {
-        //this.getViewModel().set('testHidden',false);
     },
     onSearch: function() {
         var store = Ext.data.StoreManager.lookup('appStore');
@@ -126,6 +125,114 @@ Ext.define('Admin.view.admin.app.AppsController', {
 			}
 		});
 	},
+
+    onSetRole: function() {
+        var treePanel = this.lookup('roleTree');
+        treePanel.show();
+
+        var record = this.findCurrentRecord();
+        if(!record) {
+            this.lookup('roleTree').hide();
+            return;
+        }
+
+        var app_id = record.get('id');
+
+        var store = this.getStore('roletree');
+        store.getProxy().setExtraParams({
+            status: false,
+            checked: true,
+            app_id: app_id
+        });
+        store.reload({
+            callback: function(record,operation,success) {
+                if(success === true) {
+                    treePanel.setWidth(300);
+                    treePanel.expandAll();
+                }
+            }
+        });
+    },
+
+    onBeforeRoleTreeItemExpand: function(me,options) {
+        var record = this.findCurrentRecord();
+        var app_id = record.get('id');
+
+        var data = me.data;
+        var type = data.type;
+        var store = this.getStore('roletree');
+        store.getProxy().setExtraParams({
+            status: false,
+            checked: true,
+            app_id: app_id
+        });
+    },
+
+    onSaveRoles: function() {
+        var treePanel = this.lookup('roleTree');
+        var roleNodes = treePanel.getChecked();
+        var roles = [];
+        var n = roleNodes.length;
+        for(var i = 0;i < n;i++) {
+            var data = roleNodes[i].data;
+            var role_id = data.id;
+            roles.push(role_id);
+        }
+
+        var record = this.findCurrentRecord();
+        var app_id = record.get('id');
+        var data = {
+            app_id: app_id,
+            roles: roles
+        };
+
+        var that = this;
+        Ext.Ajax.request({
+		    url: '/api/admin/app/roles',
+            jsonData: data,
+            success: function(response,opts) {
+ 				Ext.MessageBox.alert({
+					title: '成功',
+					iconCls: 'fa fa-check-circle',
+					message: '角色设置成功',
+					buttons: Ext.MessageBox.OK,
+					scope: that,
+					fn: function() {
+                        that.onSetRole();
+					}
+				});
+           },
+           failure: function(response,opts) {
+           }
+        });
+    },
+
+    onRoleTreeRefresh: function() {
+        var treePanel = this.lookup('roleTree');
+
+        var treeStore = this.getStore('roletree');
+        treeStore.reload({
+            callback: function(record,operation,success) {
+                if(success === true)
+                    treePanel.expandAll();
+            }
+        });
+    },
+    onRoleTreeClose: function() {
+        var treePanel = this.lookup('roleTree');
+        treePanel.hide();
+    },
+
+    onRoleTreeExpandAll: function() {
+        var treePanel = this.lookup('roleTree');
+        treePanel.expandAll();
+    },
+
+    onRoleTreeCollapseAll: function() {
+        var treePanel = this.lookup('roleTree');
+        treePanel.collapseAll();
+    },
+
 
 	/* private function section */
 
