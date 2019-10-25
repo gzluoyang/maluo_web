@@ -63,6 +63,12 @@ Ext.define('Admin.view.admin.app.AppAdd',{
                 },
                 {
                     xtype: 'textfield',
+                    fieldLabel: '主页',
+                    name: 'home',
+                    labelAlign: 'right'
+                },
+                {
+                    xtype: 'textfield',
                     fieldLabel: '图标',
                     name: 'icon',
                     labelAlign: 'right'

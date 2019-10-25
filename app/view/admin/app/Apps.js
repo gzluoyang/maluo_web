@@ -48,6 +48,11 @@ Ext.define('Admin.view.admin.app.Apps',{
 					width: 200
 				},
                 {
+					text: '主页',
+					dataIndex: 'home',
+					width: 150
+				},
+                {
 					text: '图标样式',
 					dataIndex: 'icon_cls',
 					sortable: false,

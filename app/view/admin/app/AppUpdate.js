@@ -77,6 +77,15 @@ Ext.define('Admin.view.admin.app.AppUpdate',{
 							},
 							{
 								xtype: 'textfield',
+								fieldLabel: '主页',
+								name: 'home',
+								bind: {
+									value: '{info.home}',
+									readOnly: '{!isEditable}'
+								}
+							},
+							{
+								xtype: 'textfield',
 								fieldLabel: '图标',
 								name: 'icon',
 								bind: {

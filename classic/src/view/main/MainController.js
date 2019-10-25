@@ -15,13 +15,11 @@ Ext.define('Admin.view.main.MainController', {
     },
 
     loaded: false,
-    hashTag: 'dashboard',
+    hashTag: '',
     lastView: null,
+    apps: {},
 
     onMainViewRender:function() {
-        if (!window.location.hash) {
-            this.redirectTo("dashboard");
-        }
     },
 
     init: function(view) {
@@ -81,6 +79,14 @@ Ext.define('Admin.view.main.MainController', {
                 
                 data[0].pressed = true;
                 segmentedbutton.add(data);
+
+                for(var i = 0; i < data.length; i++) {
+                    me.apps[data[i].value] = data[i].home;
+                }
+
+                var home = item.home;
+                if(!Ext.isEmpty(home))
+                    me.setCurrentView(home);
             }
 		},function(response, opts) {
 			var obj = Ext.decode(response.responseText);
@@ -96,8 +102,13 @@ Ext.define('Admin.view.main.MainController', {
 		});
     },
     changeApp: function(button,newValue,oldValue,opts) {
-        if(newValue)
+        if(newValue) {
             this.initNavMenu(newValue);
+            var home = this.apps[newValue];
+            if(!Ext.isEmpty(home)) {
+                this.setCurrentView(home);
+            }
+        }
     },
     setCurrentView: function(hashTag) {
         hashTag = (hashTag || '').toLowerCase();
