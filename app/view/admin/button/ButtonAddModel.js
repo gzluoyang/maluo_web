@@ -4,7 +4,7 @@ Ext.define('Admin.view.admin.button.ButtonAddModel', {
     data: {
         title: '新增按钮',
         iconCls: 'fa fa-plus-circle',
-        actionUrl: '/api/admin/Button/create',
+        actionUrl: '/api/admin/button/create',
         info:{
             menu_id: 0
         }

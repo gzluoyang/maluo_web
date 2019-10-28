@@ -4,7 +4,7 @@ Ext.define('Admin.view.admin.menu.MenuAddModel', {
     data: {
         title: '新增菜单',
         iconCls: 'fa fa-plus-circle',
-        actionUrl: '/api/admin/Menu/create',
+        actionUrl: '/api/admin/menu/create',
         info:{
             group_id: 0
         }

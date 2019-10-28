@@ -4,7 +4,7 @@ Ext.define('Admin.view.admin.org.OrgAddModel', {
     data: {
         title: '新增机构',
         iconCls: 'fa fa-plus-circle',
-        actionUrl: '/api/admin/Org/create',
+        actionUrl: '/api/admin/org/create',
         info:{
             parent_id: 0
         }

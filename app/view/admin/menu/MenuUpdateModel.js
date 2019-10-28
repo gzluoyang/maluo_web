@@ -3,7 +3,7 @@ Ext.define('Admin.view.admin.menu.MenuUpdateModel', {
     alias: 'viewmodel.menuUpdate',
     data: {
         title: '修改菜单',
-        actionUrl: '/api/admin/Menu/update',
+        actionUrl: '/api/admin/menu/update',
         info:{}
     },
 	formulas: {

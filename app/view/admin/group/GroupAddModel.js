@@ -4,7 +4,7 @@ Ext.define('Admin.view.admin.group.GroupAddModel', {
     data: {
         title: '新增分组',
         iconCls: 'fa fa-plus-circle',
-        actionUrl: '/api/admin/Group/create',
+        actionUrl: '/api/admin/group/create',
         info:{
             app_id: 0
         }

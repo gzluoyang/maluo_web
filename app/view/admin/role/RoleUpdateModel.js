@@ -3,7 +3,7 @@ Ext.define('Admin.view.admin.role.RoleUpdateModel', {
     alias: 'viewmodel.roleUpdate',
     data: {
         title: '修改角色',
-        actionUrl: '/api/admin/Role/update',
+        actionUrl: '/api/admin/role/update',
         info:{}
     },
 	formulas: {

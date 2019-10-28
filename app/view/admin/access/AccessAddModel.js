@@ -4,7 +4,7 @@ Ext.define('Admin.view.admin.access.AccessAddModel', {
     data: {
         title: '新增访问',
         iconCls: 'fa fa-plus-circle',
-        actionUrl: '/api/admin/Access/create',
+        actionUrl: '/api/admin/access/create',
         info:{
             module_id: 0
         }

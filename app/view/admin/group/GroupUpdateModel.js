@@ -2,7 +2,7 @@ Ext.define('Admin.view.admin.group.GroupUpdateModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.groupUpdate',
     data: {
-        actionUrl: '/api/admin/Group/update',
+        actionUrl: '/api/admin/group/update',
         info:{}
     },
 	formulas: {

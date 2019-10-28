@@ -3,7 +3,7 @@ Ext.define('Admin.view.admin.user.UserUpdateModel', {
     alias: 'viewmodel.userUpdate',
     data: {
         title: '用户详情',
-        actionUrl: '/api/admin/User/info',
+        actionUrl: '/api/admin/user/info',
         iconCls: 'fa fa-info-circle',
         info:{}
     },

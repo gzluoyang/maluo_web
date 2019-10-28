@@ -3,7 +3,7 @@ Ext.define('Admin.view.admin.org.OrgUpdateModel', {
     alias: 'viewmodel.orgUpdate',
     data: {
         title: '修改机构',
-        actionUrl: '/api/admin/Org/update',
+        actionUrl: '/api/admin/org/update',
         info:{}
     },
 	formulas: {

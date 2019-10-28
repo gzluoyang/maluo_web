@@ -2,7 +2,7 @@ Ext.define('Admin.view.admin.app.AppUpdateModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.appUpdate',
     data: {
-        actionUrl: '/api/admin/App/update',
+        actionUrl: '/api/admin/app/update',
         info:{}
     },
 	formulas: {

@@ -3,7 +3,7 @@ Ext.define('Admin.view.admin.access.AccessUpdateModel', {
     alias: 'viewmodel.accessUpdate',
     data: {
         title: '修改访问',
-        actionUrl: '/api/admin/Access/update',
+        actionUrl: '/api/admin/access/update',
         info:{}
     },
 	formulas: {

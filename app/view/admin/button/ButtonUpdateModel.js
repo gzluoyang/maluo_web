@@ -3,7 +3,7 @@ Ext.define('Admin.view.admin.button.ButtonUpdateModel', {
     alias: 'viewmodel.buttonUpdate',
     data: {
         title: '修改按钮',
-        actionUrl: '/api/admin/Button/update',
+        actionUrl: '/api/admin/button/update',
         info:{}
     },
 	formulas: {

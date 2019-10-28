@@ -4,7 +4,7 @@ Ext.define('Admin.view.admin.app.AppAddModel', {
     data: {
         title: '新增',
         iconCls: 'fa fa-plus-circle',
-        actionUrl: '/api/admin/App/create',
+        actionUrl: '/api/admin/app/create',
         info:{}
     }
 
