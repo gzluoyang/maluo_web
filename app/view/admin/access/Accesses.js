@@ -136,6 +136,14 @@ Ext.define('Admin.view.admin.access.Accesses',{
 				    width: 300
 				},
                 {
+                    xtype: 'booleancolumn',
+					text: '需要验证',
+                    trueText: '是',
+                    falseText: '否',
+					dataIndex: 'is_auth',
+                    width: 80
+				},
+                {
 					text: '排序',
 					dataIndex: 'tab_index',
                     width: 80

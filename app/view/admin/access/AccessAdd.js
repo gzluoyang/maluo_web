@@ -75,6 +75,14 @@ Ext.define('Admin.view.admin.access.AccessAdd',{
                     labelAlign: 'right'
                 },
                 {
+                    xtype: 'checkboxfield',
+                    fieldLabel: '需要验证',
+                    name: 'is_auth',
+                    labelAlign: 'right',
+                    inputValue: '1',
+                    uncheckedValue: '0'
+                },
+                {
                     xtype: 'numberfield',
                     fieldLabel: '排序',
                     name: 'tab_index',

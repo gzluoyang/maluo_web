@@ -85,6 +85,17 @@ Ext.define('Admin.view.admin.access.AccessUpdate',{
 								}
 							},
 							{
+								xtype: 'checkboxfield',
+								fieldLabel: '需要验证',
+								name: 'is_auth',
+								inputValue: '1',
+								uncheckedValue: '0',
+								bind: {
+									value: '{info.is_auth}',
+									readOnly: '{!isEditable}'
+								}
+							},
+							{
                                 xtype: 'numberfield',
 								fieldLabel: '排序',
 								name: 'tab_index',

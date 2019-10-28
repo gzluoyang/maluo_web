@@ -76,24 +76,6 @@ Ext.define('Admin.view.admin.module.ModuleUpdate',{
 								}
 							},
 							{
-								xtype: 'textfield',
-								fieldLabel: '图标',
-								name: 'icon',
-								bind: {
-									value: '{info.icon}',
-									readOnly: '{!isEditable}'
-								}
-							},
-							{
-								xtype: 'textfield',
-								fieldLabel: '图标样式',
-								name: 'origin',
-								bind: {
-									value: '{info.icon_cls}',
-									readOnly: '{!isEditable}'
-								}
-							},
-							{
                                 xtype: 'numberfield',
 								fieldLabel: '排序',
 								name: 'tab_index',

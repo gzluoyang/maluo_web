@@ -5,6 +5,7 @@ Ext.define('Admin.model.admin.AccessModel', {
         { name: 'id', type: 'int' },
         { name: 'title', type: 'string' },
         { name: 'url', type: 'string' },
+        { name: 'is_auth', type: 'boolean' },
         { name: 'tab_index', type: 'int' },
         { name: 'status', type: 'boolean' },
         { name: 'memo', type: 'string' },
