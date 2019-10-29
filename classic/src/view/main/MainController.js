@@ -15,6 +15,7 @@ Ext.define('Admin.view.main.MainController', {
     },
 
     loaded: false,
+    home: '',
     hashTag: '',
     lastView: null,
     apps: {},
@@ -37,6 +38,17 @@ Ext.define('Admin.view.main.MainController', {
             me.initAppMenu();
         },function(response,opt){
             me.redirectTo('login', true);
+        });
+
+        url = '/api/admin/home/isAdmin';
+		Ext.Ajax.request({
+			url: url
+		}).then(function(response, opts) {
+ 			var obj = Ext.decode(response.responseText);
+			if(obj.success === true) {
+                var data = obj.data;
+                me.getViewModel().setData(data);
+            }
         });
     },
     initNavMenu: function(app_id) {
@@ -78,14 +90,16 @@ Ext.define('Admin.view.main.MainController', {
                 me.initNavMenu(app_id);
                 
                 data[0].pressed = true;
-                segmentedbutton.add(data);
+                if(data.length > 1)
+                    segmentedbutton.add(data);
 
                 for(var i = 0; i < data.length; i++) {
                     me.apps[data[i].value] = data[i].home;
                 }
 
                 var home = item.home;
-                if(!Ext.isEmpty(home))
+                me.home = home;
+                if(!Ext.isEmpty(home) && Ext.isEmpty(me.lastView))
                     me.setCurrentView(home);
             }
 		},function(response, opts) {
@@ -106,7 +120,9 @@ Ext.define('Admin.view.main.MainController', {
             this.initNavMenu(newValue);
             var home = this.apps[newValue];
             if(!Ext.isEmpty(home)) {
-                this.setCurrentView(home);
+                this.home = home;
+                this.redirectTo(home);
+                //this.setCurrentView(home);
             }
         }
     },
@@ -275,6 +291,52 @@ Ext.define('Admin.view.main.MainController', {
         this.setCurrentView('email');
     },
 
+    onClearCache: function() {
+		var that = this;
+		Ext.Ajax.request({
+			url: '/api/admin/home/clearCache',
+			method: 'post',
+			scope: that,
+		}).then(function(response, opts) {
+			var obj = Ext.decode(response.responseText);
+			if(obj.success == true) {
+				Ext.MessageBox.alert({
+					title: '操作成功',
+					iconCls: 'fa fa-check-circle-o',
+					buttons: Ext.MessageBox.OK,
+					message: '系统缓存已清除,请重新登录!',
+                    fn: function() {
+                        that.redirectTo("login", true);
+                        window.location.reload();
+                    }
+				});
+			} else {
+				Ext.MessageBox.alert({
+					title: '错误',
+					iconCls: 'fa fa-times-circle',
+					buttons: Ext.MessageBox.OK,
+					message: obj.message
+				});
+			}
+		},function(response, opts) {
+			var obj = Ext.decode(response.responseText);
+			Ext.MessageBox.alert({
+				title: '错误',
+				iconCls: 'fa fa-times-circle',
+				buttons: Ext.MessageBox.OK,
+				message: obj.message
+			});
+		});
+
+    },
+
+    goHome: function() {
+        var home = 'dashboard';
+        if(!Ext.isEmpty(this.home))
+            home = this.home;
+
+        this.redirectTo(home);
+    },
 	onLogout: function() {
 		var that = this;
 		Ext.Ajax.request({

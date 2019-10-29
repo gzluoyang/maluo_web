@@ -7,6 +7,7 @@ Ext.define('Admin.view.main.MainModel', {
         }
     },
     data: {
-        currentView: null
+        currentView: null,
+        isAdmin: false
     }
 });

@@ -72,6 +72,15 @@ Ext.define('Admin.view.main.Main', {
                 },
                 */
                 {
+                    iconCls:'x-fa fa-eraser',
+                    ui: 'header',
+					handler: 'onClearCache',
+                    tooltip: '清空缓存',
+                    bind: {
+                        hidden: '{!isAdmin}'
+                    }
+                },
+                {
                     iconCls:'x-fa fa-question',
                     ui: 'header',
                     href: '#faq',
@@ -81,8 +90,9 @@ Ext.define('Admin.view.main.Main', {
                 {
                     iconCls:'x-fa fa-th-large',
                     ui: 'header',
-                    href: '#dashboard',
-                    hrefTarget: '_self',
+                    handler: 'goHome',
+                    //href: '#dashboard',
+                    //hrefTarget: '_self',
                     tooltip: '显示桌面'
                 },
                 {
